@@ -1,1 +1,1 @@
-# CS238-Project
+# Redactle Solver
