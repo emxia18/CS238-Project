@@ -3,7 +3,7 @@
 By default the articles are Wikipedia's Vital Articles (~10k well-known topics,
 listed in vital_articles.json; refresh that file with `python vital.py`).
 Their text comes from the Hugging Face Wikipedia dump. The first run scans the
-whole dump (slow) and caches the matches to data/vital_raw.jsonl.
+whole dump once (~11 GB download, files deleted as it goes) and caches the matches to data/vital_raw.jsonl.
 
 Usage:
   python data.py                          # vital articles
@@ -14,9 +14,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
 import re
+import tempfile
 import unicodedata
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from datasets import load_dataset
@@ -103,28 +106,58 @@ def check(title: str, text: str) -> str | None:
     return None
 
 
+DUMP_REPO, DUMP_CONFIG = "wikimedia/wikipedia", "20231101.en"
+
+
 def wikipedia_stream():
-    return load_dataset("wikimedia/wikipedia", "20231101.en",
-                        split="train", streaming=True)
+    return load_dataset(DUMP_REPO, DUMP_CONFIG, split="train", streaming=True)
 
 
-def load_vital_raw(levels: dict[str, int], cache: Path) -> list[dict]:
-    """Raw dump entries for the vital titles, scanning the dump only once."""
+def _scan_file(filename: str, titles: list[str], tmpdir: str) -> list[dict]:
+    """Download one dump parquet file, keep rows whose title is vital, delete it."""
+    import pyarrow.compute as pc
+    import pyarrow.parquet as pq
+    from huggingface_hub import hf_hub_download
+
+    path = hf_hub_download(DUMP_REPO, filename, repo_type="dataset",
+                           local_dir=tmpdir)
+    try:
+        table = pq.read_table(path)
+        table = table.filter(pc.is_in(table["title"], value_set=pa_array(titles)))
+        return table.to_pylist()
+    finally:
+        os.remove(path)
+
+
+def pa_array(values):
+    import pyarrow as pa
+    return pa.array(values)
+
+
+def load_vital_raw(levels: dict[str, int], cache: Path,
+                   workers: int = 4) -> list[dict]:
+    """Raw dump entries for the vital titles. The first call downloads the dump
+    one parquet file at a time (deleting each after use) and caches matches."""
     if not cache.exists():
-        print(f"Scanning the Wikipedia dump for {len(levels)} vital articles "
-              f"(one-time, can take a while)...")
-        found = 0
+        from huggingface_hub import HfFileSystem
+        files = sorted(Path(f).name for f in HfFileSystem().glob(
+            f"datasets/{DUMP_REPO}/{DUMP_CONFIG}/*.parquet"))
+        print(f"One-time scan of {len(files)} dump files for {len(levels)} "
+              f"vital articles...", flush=True)
+        titles = list(levels)
+        rows = []
         cache.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=cache.parent) as tmpdir, \
+                ThreadPoolExecutor(workers) as pool:
+            jobs = [pool.submit(_scan_file, f"{DUMP_CONFIG}/{name}", titles, tmpdir)
+                    for name in files]
+            for i, job in enumerate(as_completed(jobs), 1):
+                rows.extend(job.result())
+                print(f"  {i}/{len(files)} files, {len(rows)} found", flush=True)
         tmp = cache.with_suffix(".tmp")
         with tmp.open("w") as f:
-            for i, art in enumerate(wikipedia_stream()):
-                if art["title"] in levels:
-                    f.write(json.dumps(art, ensure_ascii=False) + "\n")
-                    found += 1
-                    if found == len(levels):
-                        break
-                if i % 250_000 == 0:
-                    print(f"  scanned {i:,}, found {found:,}", flush=True)
+            for row in rows:
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
         tmp.rename(cache)
     with cache.open() as f:
         return [json.loads(line) for line in f]

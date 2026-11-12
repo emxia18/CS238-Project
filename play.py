@@ -88,6 +88,9 @@ def main() -> None:
         arts = [a for a in arts if a["title"].lower() == args.title.lower()]
         if not arts:
             sys.exit(f"no article titled {args.title!r}")
+    if not arts:
+        sys.exit("No articles match those options. If you used --max-level, "
+                 "rebuild the dataset with `python data.py` (vital articles).")
     art = random.Random(args.seed).choice(arts)
 
     if args.show:
