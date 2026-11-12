@@ -2,8 +2,8 @@
 
 Rules (mirroring the original Redactle):
   * Punctuation and whitespace are always visible.
-  * A fixed list of common words (articles, prepositions, a few conjunctions /
-    verbs) is always visible. List taken from
+  * A fixed list of common words (articles, prepositions, a few conjunctions,
+    and every form of "be") is always visible. List taken from
     https://github.com/foobuzz/auto-redactle/blob/master/redactle-common-words.txt
   * Every other word is hidden as a block of the same length.
   * Matching is case-insensitive, ignores diacritics (é == e) and apostrophes
@@ -27,7 +27,11 @@ considering despite down during except following for from if in inside into is
 it like minus near next of off on onto opposite or out outside over past per
 plus regarding round save since than the through till to toward under
 underneath unlike until up upon versus via was with within without
-""".split())
+""".split()) | frozenset(
+    # All forms of "be" are shown too (the list above already has is/was);
+    # they share one match key, so hiding them would make "are" a free guess
+    # that reveals hundreds of words.
+    "am are be been being were".split())
 
 BLOCK = "█"  # █
 

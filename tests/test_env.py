@@ -56,9 +56,11 @@ def test_invalid_guesses():
     assert info["reason"] == "already_guessed" and not info["valid"] and r == -1
     _, r, _, info = env.step("the")
     assert info["reason"] == "always_visible"
+    _, _, _, info = env.step("are")  # every form of "be" is always visible
+    assert info["reason"] == "always_visible"
     _, _, _, info = env.step("two words")
     assert info["reason"] == "not_a_word"
-    assert env.n_guesses == 4
+    assert env.n_guesses == 5
 
 
 def test_invalid_guesses_free_when_not_counted():
