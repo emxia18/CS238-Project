@@ -59,7 +59,9 @@ _PRONOUN_KEY = {w: fam.split()[0] for fam in PRONOUN_FAMILIES for w in fam.split
 def match_key(word: str) -> str:
     """Key that decides which words a guess reveals. Case, accents and
     apostrophes are ignored, and related forms share a key: pronoun families
-    (he/him/his), plurals (ring/rings) and verb forms (run/ran/running)."""
+    (he/him/his), plurals (ring/rings), verb forms (run/ran/running) and
+    possessives (Chaplin's/Chaplin)."""
+    word = re.sub(r"['’][sS]$", "", word)  # possessive 's
     key = normalize(word)
     if key in _PRONOUN_KEY:
         return _PRONOUN_KEY[key]

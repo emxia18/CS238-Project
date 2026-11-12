@@ -1,4 +1,4 @@
-"""Play Redactle in the terminal on an article from data/articles.jsonl.
+"""Play Redactle in the terminal (uses the same RedactleEnv as the agents).
 
 Usage:
   python play.py                  # random article
@@ -14,14 +14,11 @@ Commands while playing:  :q quit   :giveup reveal answer   :history list guesses
 from __future__ import annotations
 
 import argparse
-import json
 import os
-import random
 import sys
-from pathlib import Path
 
-from redact import (count_matches, is_always_visible, match_key, normalize,
-                    redact, target_keys, tokenize)
+from env import DEFAULT_DATA, Observation, RedactleEnv, load_articles
+from redact import hidden
 
 USE_COLOR = sys.stdout.isatty()
 
@@ -30,81 +27,73 @@ def color(s: str, code: str) -> str:
     return f"\033[{code}m{s}\033[0m" if USE_COLOR else s
 
 
-def render(text: str, revealed: set[str], highlight: str | None,
-           reveal_numbers: bool) -> str:
-    """Redacted text with hidden words dimmed and the latest guess highlighted."""
+def render(seq: list, keys: list, highlight: str | None) -> str:
+    """Hidden words dimmed with their length; the latest guess highlighted."""
     out = []
-    for piece, is_word in tokenize(text):
-        key = match_key(piece) if is_word else None
-        if is_word and key == highlight:
-            out.append(color(piece, "1;30;43"))  # black on yellow
-        elif not is_word or key in revealed or is_always_visible(piece, reveal_numbers):
-            out.append(piece)
+    for x, key in zip(seq, keys):
+        if isinstance(x, int):
+            out.append(color(hidden("x" * x, show_length=True), "90"))
+        elif highlight and key == highlight:
+            out.append(color(x, "1;30;43"))  # black on yellow
         else:
-            out.append(color(redact(piece, show_lengths=True), "90"))
+            out.append(x)
     return "".join(out)
 
 
-def load_articles(path: Path, split: str | None) -> list[dict]:
-    if not path.exists():
-        sys.exit(f"{path} not found - run `python data.py` first.")
-    with path.open() as f:
-        arts = [json.loads(line) for line in f]
-    return [a for a in arts if split is None or a["split"] == split]
-
-
-def screen(art: dict, revealed: set[str], highlight: str | None,
-           history: list[tuple[str, int]], msg: str, reveal_numbers: bool) -> None:
+def screen(env: RedactleEnv, obs: Observation, highlight: str | None, msg: str):
+    keys = [t.key for t in env.puzzle.tokens]
+    n = env.puzzle.n_title
     if USE_COLOR:
         os.system("clear")
-    print(color(render(art["title"], revealed, highlight, reveal_numbers), "1"))
+    print(color(render(obs.title, keys[:n], highlight), "1"))
     print("=" * 60)
-    print(render(art["text"], revealed, highlight, reveal_numbers))
+    print(render(obs.body, keys[n:], highlight))
     print("=" * 60)
-    last = ", ".join(f"{w} ({n})" for w, n in history[-8:])
-    print(f"guesses: {len(history)}   recent: {last}")
+    recent = ", ".join(f"{g.word} ({g.count})" for g in obs.history if g.valid)
+    print(f"guesses: {obs.n_guesses}   recent: {recent[-200:]}")
     if msg:
         print(msg)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data/articles.jsonl")
+    ap.add_argument("--data", default=DEFAULT_DATA)
     ap.add_argument("--split", choices=["train", "val", "test"])
     ap.add_argument("--max-level", type=int, choices=[1, 2, 3, 4],
                     help="only Vital Articles at this level or lower (3 = top 1,000)")
     ap.add_argument("--title", help="play a specific article by title")
     ap.add_argument("--seed", type=int)
+    ap.add_argument("--max-guesses", type=int, default=500)
     ap.add_argument("--reveal-numbers", action="store_true",
                     help="show numbers from the start (modern redactle.net)")
     ap.add_argument("--show", action="store_true",
                     help="print the redacted article and exit")
     args = ap.parse_args()
 
-    arts = load_articles(Path(args.data), args.split)
-    if args.max_level:
-        arts = [a for a in arts if (a.get("level") or 99) <= args.max_level]
-    if args.title:
-        arts = [a for a in arts if a["title"].lower() == args.title.lower()]
-        if not arts:
-            sys.exit(f"no article titled {args.title!r}")
+    try:
+        arts = load_articles(args.data, args.split, args.max_level)
+    except FileNotFoundError as e:
+        sys.exit(str(e))
     if not arts:
         sys.exit("No articles match those options. If you used --max-level, "
                  "rebuild the dataset with `python data.py` (vital articles).")
-    art = random.Random(args.seed).choice(arts)
+
+    env = RedactleEnv(arts, max_guesses=args.max_guesses, count_invalid=False,
+                      reveal_numbers=args.reveal_numbers, seed=args.seed)
+    try:
+        obs = env.reset(args.title)
+    except KeyError as e:
+        sys.exit(str(e))
 
     if args.show:
-        print(render(art["title"], set(), None, args.reveal_numbers))
-        print(render(art["text"], set(), None, args.reveal_numbers))
+        title, body = obs.render()
+        print(title)
+        print(body)
         return
 
-    targets = set(target_keys(art["title"]))
-    revealed: set[str] = set()
-    history: list[tuple[str, int]] = []
     highlight, msg = None, "Type a word to guess."
-
     while True:
-        screen(art, revealed, highlight, history, msg, args.reveal_numbers)
+        screen(env, obs, highlight, msg)
         try:
             guess = input("> ").strip()
         except (EOFError, KeyboardInterrupt):
@@ -115,29 +104,33 @@ def main() -> None:
         if guess == ":q":
             return
         if guess == ":history":
-            msg = "\n".join(f"{i+1:3}. {w} ({n})" for i, (w, n) in enumerate(history))
+            msg = "\n".join(f"{i+1:3}. {g.word} ({g.count})"
+                            for i, g in enumerate(g for g in obs.history if g.valid))
             continue
         if guess == ":giveup":
+            art = env.puzzle.article
             print(f"\nThe answer was: {color(art['title'], '1;32')}  ({art['url']})")
             return
 
-        if " " in guess or not normalize(guess):
-            msg = "Guess one word at a time."
-        elif is_always_visible(guess, args.reveal_numbers):
-            msg = f"'{guess}' is always visible."
-        elif (key := match_key(guess)) in revealed:
-            msg = f"Already revealed '{guess}' (same word family as an earlier guess)."
-        else:
-            n = count_matches(art["title"], key) + count_matches(art["text"], key)
-            history.append((normalize(guess), n))
-            revealed.add(key)
-            highlight = key
-            msg = f"'{guess}': {n} match{'es' if n != 1 else ''}."
-            if targets <= revealed:
-                screen(art, revealed | {match_key(p) for p, w in tokenize(art["text"]) if w},
-                       None, history, "", args.reveal_numbers)
-                print(color(f"Solved '{art['title']}' in {len(history)} guesses!", "1;32"))
-                return
+        obs, reward, done, info = env.step(guess)
+        msg = {
+            "not_a_word": "Guess one word at a time.",
+            "always_visible": f"'{guess}' is always visible.",
+            "already_guessed": f"Already revealed '{guess}' (same word family "
+                               "as an earlier guess).",
+        }.get(info["reason"], f"'{guess}': {info['count']} "
+                              f"match{'es' if info['count'] != 1 else ''}.")
+        highlight = env.history[-1].key if info["valid"] else None
+
+        if info["solved"]:
+            obs = env.reveal_all()
+            screen(env, obs, None, "")
+            print(color(f"Solved '{info['title']}' in {obs.n_guesses} guesses!", "1;32"))
+            return
+        if info["truncated"]:
+            screen(env, obs, None, "")
+            print(f"Out of guesses. The answer was: {info['title']}")
+            return
 
 
 if __name__ == "__main__":
