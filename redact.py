@@ -55,8 +55,19 @@ def is_always_visible(word: str, reveal_numbers: bool = False) -> bool:
     return key in REDACTLE_COMMON_WORDS or (reveal_numbers and key.isdigit())
 
 
+def hidden(word: str, show_length: bool = False) -> str:
+    """Blocks for a hidden word; with show_length the length is written in the
+    middle (e.g. '██7██') so the rendered width still equals the word length."""
+    n = len(word)
+    label = str(n)
+    if not show_length or n < len(label) + 2:
+        return BLOCK * n
+    left = (n - len(label)) // 2
+    return BLOCK * left + label + BLOCK * (n - len(label) - left)
+
+
 def redact(text: str, revealed: set[str] = frozenset(),
-           reveal_numbers: bool = False) -> str:
+           reveal_numbers: bool = False, show_lengths: bool = False) -> str:
     """Render text with every word hidden unless common or in `revealed`
     (a set of normalized keys)."""
     out = []
@@ -65,8 +76,13 @@ def redact(text: str, revealed: set[str] = frozenset(),
                 or is_always_visible(piece, reveal_numbers)):
             out.append(piece)
         else:
-            out.append(BLOCK * len(piece))
+            out.append(hidden(piece, show_lengths))
     return "".join(out)
+
+
+def count_matches(text: str, key: str) -> int:
+    """How many words in text match the normalized guess `key`."""
+    return sum(is_word and normalize(p) == key for p, is_word in tokenize(text))
 
 
 def target_keys(title: str) -> list[str]:
