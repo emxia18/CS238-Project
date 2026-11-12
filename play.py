@@ -19,8 +19,8 @@ import random
 import sys
 from pathlib import Path
 
-from redact import (count_matches, is_always_visible, normalize, redact,
-                    tokenize)
+from redact import (count_matches, is_always_visible, match_key, normalize,
+                    redact, target_keys, tokenize)
 
 USE_COLOR = sys.stdout.isatty()
 
@@ -34,7 +34,7 @@ def render(text: str, revealed: set[str], highlight: str | None,
     """Redacted text with hidden words dimmed and the latest guess highlighted."""
     out = []
     for piece, is_word in tokenize(text):
-        key = normalize(piece) if is_word else None
+        key = match_key(piece) if is_word else None
         if is_word and key == highlight:
             out.append(color(piece, "1;30;43"))  # black on yellow
         elif not is_word or key in revealed or is_always_visible(piece, reveal_numbers):
@@ -90,7 +90,7 @@ def main() -> None:
         print(render(art["text"], set(), None, args.reveal_numbers))
         return
 
-    targets = set(art["target_keys"])
+    targets = set(target_keys(art["title"]))
     revealed: set[str] = set()
     history: list[tuple[str, int]] = []
     highlight, msg = None, "Type a word to guess."
@@ -113,21 +113,20 @@ def main() -> None:
             print(f"\nThe answer was: {color(art['title'], '1;32')}  ({art['url']})")
             return
 
-        key = normalize(guess)
-        if " " in guess or not key:
+        if " " in guess or not normalize(guess):
             msg = "Guess one word at a time."
         elif is_always_visible(guess, args.reveal_numbers):
             msg = f"'{guess}' is always visible."
-        elif key in revealed or any(w == key for w, _ in history):
-            msg = f"Already guessed '{guess}'."
+        elif (key := match_key(guess)) in revealed:
+            msg = f"Already revealed '{guess}' (same word family as an earlier guess)."
         else:
             n = count_matches(art["title"], key) + count_matches(art["text"], key)
-            history.append((key, n))
+            history.append((normalize(guess), n))
             revealed.add(key)
             highlight = key
             msg = f"'{guess}': {n} match{'es' if n != 1 else ''}."
             if targets <= revealed:
-                screen(art, revealed | {normalize(p) for p, w in tokenize(art["text"]) if w},
+                screen(art, revealed | {match_key(p) for p, w in tokenize(art["text"]) if w},
                        None, history, "", args.reveal_numbers)
                 print(color(f"Solved '{art['title']}' in {len(history)} guesses!", "1;32"))
                 return

@@ -7,13 +7,18 @@ Rules (mirroring the original Redactle):
     https://github.com/foobuzz/auto-redactle/blob/master/redactle-common-words.txt
   * Every other word is hidden as a block of the same length.
   * Matching is case-insensitive, ignores diacritics (é == e) and apostrophes
-    (McDonald's == mcdonalds). Hyphenated words are separate tokens.
+    (McDonald's == mcdonalds), and reveals related forms: he -> He/him/his,
+    ring -> rings, run -> ran/running (see match_key). Hyphenated words are
+    separate tokens.
 """
 
 from __future__ import annotations
 
 import re
 import unicodedata
+from functools import lru_cache
+
+import simplemma
 
 REDACTLE_COMMON_WORDS = frozenset("""
 a aboard about above across after against along amid among an and around as at
@@ -35,6 +40,30 @@ def normalize(word: str) -> str:
     word = unicodedata.normalize("NFKD", word)
     word = "".join(c for c in word if not unicodedata.combining(c))
     return word.replace("'", "").replace("’", "").lower()
+
+
+# Pronoun families: guessing any member reveals all of them (he -> him, his).
+PRONOUN_FAMILIES = [
+    "he him his himself",
+    "she her hers herself",
+    "they them their theirs themselves themself",
+    "i me my mine myself",
+    "we us our ours ourselves",
+    "you your yours yourself yourselves",
+    "it its itself",
+]
+_PRONOUN_KEY = {w: fam.split()[0] for fam in PRONOUN_FAMILIES for w in fam.split()}
+
+
+@lru_cache(maxsize=200_000)
+def match_key(word: str) -> str:
+    """Key that decides which words a guess reveals. Case, accents and
+    apostrophes are ignored, and related forms share a key: pronoun families
+    (he/him/his), plurals (ring/rings) and verb forms (run/ran/running)."""
+    key = normalize(word)
+    if key in _PRONOUN_KEY:
+        return _PRONOUN_KEY[key]
+    return simplemma.lemmatize(key, lang="en").lower()
 
 
 def tokenize(text: str) -> list[tuple[str, bool]]:
@@ -69,10 +98,10 @@ def hidden(word: str, show_length: bool = False) -> str:
 def redact(text: str, revealed: set[str] = frozenset(),
            reveal_numbers: bool = False, show_lengths: bool = False) -> str:
     """Render text with every word hidden unless common or in `revealed`
-    (a set of normalized keys)."""
+    (a set of match_key keys)."""
     out = []
     for piece, is_word in tokenize(text):
-        if (not is_word or normalize(piece) in revealed
+        if (not is_word or match_key(piece) in revealed
                 or is_always_visible(piece, reveal_numbers)):
             out.append(piece)
         else:
@@ -81,15 +110,17 @@ def redact(text: str, revealed: set[str] = frozenset(),
 
 
 def count_matches(text: str, key: str) -> int:
-    """How many words in text match the normalized guess `key`."""
-    return sum(is_word and normalize(p) == key for p, is_word in tokenize(text))
+    """How many words in text a guess with match_key `key` reveals."""
+    return sum(is_word and match_key(p) == key for p, is_word in tokenize(text))
 
 
 def target_keys(title: str) -> list[str]:
-    """Normalized title words the player must reveal to win."""
+    """match_key keys of the title words the player must reveal to win."""
     keys = []
     for piece, is_word in tokenize(title):
-        key = normalize(piece)
-        if is_word and key not in REDACTLE_COMMON_WORDS and key not in keys:
+        if not is_word or normalize(piece) in REDACTLE_COMMON_WORDS:
+            continue
+        key = match_key(piece)
+        if key not in keys:
             keys.append(key)
     return keys
