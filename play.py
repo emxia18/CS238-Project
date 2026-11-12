@@ -3,6 +3,7 @@
 Usage:
   python play.py                  # random article
   python play.py --split test     # random article from one split
+  python play.py --max-level 3    # only the ~1,000 most famous topics
   python play.py --title "Fay Peak"
   python play.py --show           # just print the redacted article and exit
 
@@ -70,6 +71,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data/articles.jsonl")
     ap.add_argument("--split", choices=["train", "val", "test"])
+    ap.add_argument("--max-level", type=int, choices=[1, 2, 3, 4],
+                    help="only Vital Articles at this level or lower (3 = top 1,000)")
     ap.add_argument("--title", help="play a specific article by title")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--reveal-numbers", action="store_true",
@@ -79,6 +82,8 @@ def main() -> None:
     args = ap.parse_args()
 
     arts = load_articles(Path(args.data), args.split)
+    if args.max_level:
+        arts = [a for a in arts if (a.get("level") or 99) <= args.max_level]
     if args.title:
         arts = [a for a in arts if a["title"].lower() == args.title.lower()]
         if not arts:

@@ -1,6 +1,13 @@
 """Load Wikipedia articles, filter them into playable Redactle puzzles, and save.
 
-Usage: python data.py [--n 10000] [--out data/articles.jsonl]
+By default the articles are Wikipedia's Vital Articles (~10k well-known topics,
+listed in vital_articles.json; refresh that file with `python vital.py`).
+Their text comes from the Hugging Face Wikipedia dump. The first run scans the
+whole dump (slow) and caches the matches to data/vital_raw.jsonl.
+
+Usage:
+  python data.py                          # vital articles
+  python data.py --source random --n 10000  # random sample of all Wikipedia
 """
 
 from __future__ import annotations
@@ -96,19 +103,57 @@ def check(title: str, text: str) -> str | None:
     return None
 
 
+def wikipedia_stream():
+    return load_dataset("wikimedia/wikipedia", "20231101.en",
+                        split="train", streaming=True)
+
+
+def load_vital_raw(levels: dict[str, int], cache: Path) -> list[dict]:
+    """Raw dump entries for the vital titles, scanning the dump only once."""
+    if not cache.exists():
+        print(f"Scanning the Wikipedia dump for {len(levels)} vital articles "
+              f"(one-time, can take a while)...")
+        found = 0
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        tmp = cache.with_suffix(".tmp")
+        with tmp.open("w") as f:
+            for i, art in enumerate(wikipedia_stream()):
+                if art["title"] in levels:
+                    f.write(json.dumps(art, ensure_ascii=False) + "\n")
+                    found += 1
+                    if found == len(levels):
+                        break
+                if i % 250_000 == 0:
+                    print(f"  scanned {i:,}, found {found:,}", flush=True)
+        tmp.rename(cache)
+    with cache.open() as f:
+        return [json.loads(line) for line in f]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--n", type=int, default=10_000, help="articles to sample")
+    ap.add_argument("--source", choices=["vital", "random"], default="vital")
+    ap.add_argument("--vital-list", default="vital_articles.json")
+    ap.add_argument("--vital-cache", default="data/vital_raw.jsonl")
+    ap.add_argument("--n", type=int, default=10_000,
+                    help="articles to sample (--source random)")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default="data/articles.jsonl")
     args = ap.parse_args()
 
-    dataset = load_dataset("wikimedia/wikipedia", "20231101.en",
-                           split="train", streaming=True)
-    sampled = dataset.shuffle(seed=args.seed, buffer_size=10_000).take(args.n)
+    if args.source == "vital":
+        levels = json.loads(Path(args.vital_list).read_text())
+        sampled = load_vital_raw(levels, Path(args.vital_cache))
+        print(f"found {len(sampled)} / {len(levels)} vital articles in the dump")
+    else:
+        levels = {}
+        sampled = wikipedia_stream().shuffle(
+            seed=args.seed, buffer_size=10_000).take(args.n)
 
     kept, rejected = [], {}
+    n_total = 0
     for art in sampled:
+        n_total += 1
         title, text = clean_title(art["title"]), clean_text(art["text"])
         reason = check(title, text)
         if reason:
@@ -117,6 +162,7 @@ def main() -> None:
         kept.append({
             "id": art["id"],
             "url": art["url"],
+            "level": levels.get(art["title"]),
             "title": title,
             "text": text,
             "target_keys": target_keys(title),
@@ -137,7 +183,7 @@ def main() -> None:
         for art in kept:
             f.write(json.dumps(art, ensure_ascii=False) + "\n")
 
-    print(f"kept {len(kept)} / {args.n} -> {out}")
+    print(f"kept {len(kept)} / {n_total} -> {out}")
     for reason, count in sorted(rejected.items(), key=lambda kv: -kv[1]):
         print(f"  rejected {reason}: {count}")
     if kept:
