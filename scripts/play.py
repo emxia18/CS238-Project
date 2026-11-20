@@ -1,11 +1,11 @@
 """Play Redactle in the terminal (uses the same RedactleEnv as the agents).
 
 Usage:
-  python play.py                  # random article
-  python play.py --split test     # random article from one split
-  python play.py --max-level 3    # only the ~1,000 most famous topics
-  python play.py --title "Fay Peak"
-  python play.py --show           # just print the redacted article and exit
+  python -m scripts.play                  # random article
+  python -m scripts.play --split test     # random article from one split
+  python -m scripts.play --max-level 3    # only the ~1,000 most famous topics
+  python -m scripts.play --title "Fay Peak"
+  python -m scripts.play --show           # print the redacted article and exit
 
 Hidden words show their length in the middle of the blocks: ██7██ = 7 letters.
 Commands while playing:  :q quit   :giveup reveal answer   :history list guesses
@@ -17,8 +17,8 @@ import argparse
 import os
 import sys
 
-from env import DEFAULT_DATA, Observation, RedactleEnv, load_articles
-from redact import hidden
+from redactle.env import DEFAULT_DATA, Observation, RedactleEnv, load_articles
+from redactle.redact import hidden
 
 USE_COLOR = sys.stdout.isatty()
 
@@ -76,7 +76,7 @@ def main() -> None:
         sys.exit(str(e))
     if not arts:
         sys.exit("No articles match those options. If you used --max-level, "
-                 "rebuild the dataset with `python data.py` (vital articles).")
+                 "rebuild the dataset with `python -m scripts.data` (vital articles).")
 
     env = RedactleEnv(arts, max_guesses=args.max_guesses, count_invalid=False,
                       reveal_numbers=args.reveal_numbers, seed=args.seed)

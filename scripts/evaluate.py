@@ -1,22 +1,28 @@
 """Evaluate an agent on a split of the Redactle dataset.
 
-Usage:
-  python evaluate.py --agent frequency --split val
-  python evaluate.py --agent random --split val --n 100
+Usage (from the repo root):
+  python -m scripts.evaluate --agent frequency --split val
+  python -m scripts.evaluate --agent random --split val --n 100
+  python -m scripts.evaluate --agent belief --n 100 --set endgame_conf=0.5 \
+      --tag endgame0.5 --out-dir results/sweeps
 
-Prints summary metrics and writes one row per episode to results/<agent>_<split>.csv.
+Prints summary metrics and writes one row per episode to
+results/<agent>[_<tag>]_<split>.csv. --set passes keyword arguments to the
+agent's constructor (values are parsed as Python literals when possible).
 """
 
 from __future__ import annotations
 
 import argparse
+import ast
 import csv
 import statistics
 import time
 from pathlib import Path
 
-from agents import AGENTS, Agent, load_vocab, make_agent
-from env import RedactleEnv, load_articles
+from redactle.agents import AGENTS, Agent, load_vocab, make_agent
+from redactle.env import RedactleEnv, load_articles
+from redactle.paths import RESULTS_DIR
 
 BUDGETS = (50, 100, 200, 500)
 
@@ -62,6 +68,18 @@ def summarize(rows: list[dict], max_guesses: int) -> None:
               f"({len(sub)} articles)")
 
 
+def parse_kwargs(pairs: list[str]) -> dict:
+    """['alpha=20', 'endgame_conf=None'] -> {'alpha': 20, 'endgame_conf': None}"""
+    out = {}
+    for pair in pairs:
+        key, _, value = pair.partition("=")
+        try:
+            out[key] = ast.literal_eval(value)
+        except (ValueError, SyntaxError):
+            out[key] = value
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--agent", choices=list(AGENTS), required=True)
@@ -70,11 +88,14 @@ def main() -> None:
     ap.add_argument("--max-level", type=int, choices=[1, 2, 3, 4])
     ap.add_argument("--max-guesses", type=int, default=500)
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--out-dir", default="results")
+    ap.add_argument("--out-dir", default=RESULTS_DIR)
+    ap.add_argument("--set", nargs="*", default=[], metavar="KEY=VALUE",
+                    help="agent constructor arguments, e.g. alpha=10")
+    ap.add_argument("--tag", help="label added to the output filename")
     args = ap.parse_args()
 
     articles = load_articles(split=args.split, max_level=args.max_level)[:args.n]
-    agent = make_agent(args.agent, seed=args.seed)
+    agent = make_agent(args.agent, seed=args.seed, **parse_kwargs(args.set))
     env = RedactleEnv(articles, max_guesses=args.max_guesses, seed=args.seed)
 
     # Upper bound for vocabulary-based agents: titles whose words are all in
@@ -89,7 +110,8 @@ def main() -> None:
     print(f"reachable ceiling:   {reachable / len(articles):.1%} of titles have all "
           f"words in the vocabulary")
 
-    out = Path(args.out_dir) / f"{args.agent}_{args.split}.csv"
+    name = f"{args.agent}_{args.tag}" if args.tag else args.agent
+    out = Path(args.out_dir) / f"{name}_{args.split}.csv"
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0]))

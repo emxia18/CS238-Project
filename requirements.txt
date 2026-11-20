@@ -1,2 +1,14 @@
-simplemma
-datasets
+# core: redaction, environment, belief agent
+simplemma>=2.0
+numpy>=1.26
+scipy>=1.11
+# dataset building (scripts/data.py)
+datasets>=3.1
+pyarrow>=18
+huggingface_hub>=0.29
+# LM agent (redactle/agents/lm.py)
+torch>=2.7
+transformers>=4.46
+# figures and tests
+matplotlib>=3.10
+pytest

@@ -1,4 +1,7 @@
-data/
+# Generated data (rebuild with `python -m scripts.data`); keep the vital list.
+data/*
+!data/vital_articles.json
 __pycache__/
-results/
+*.pyc
 .DS_Store
+.pytest_cache/

@@ -1,11 +1,6 @@
-"""Tests for the Redactle environment. Run: python tests/test_env.py (or pytest)."""
+"""Tests for the Redactle environment. Run from the repo root: pytest"""
 
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-from env import RedactleEnv  # noqa: E402
+from redactle.env import RedactleEnv
 
 ART = {
     "id": "1", "url": "", "level": 3, "split": "train",

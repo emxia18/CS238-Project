@@ -1,0 +1,648 @@
+title,level,n_title_words,solved,guesses,return,title_words_found
+Gastrointestinal tract,4,2,False,500,-500.0,0
+Partition of India,4,2,False,500,-500.0,0
+Category theory,4,2,False,500,-500.0,0
+Saint Petersburg,4,2,False,500,-500.0,0
+Steppe,4,1,False,500,-500.0,0
+Henri Becquerel,4,2,False,500,-500.0,0
+Wars of the Roses,4,2,False,500,-500.0,1
+Barge,4,1,False,500,-500.0,0
+Chelicerata,4,1,False,500,-500.0,0
+Cambodian genocide,4,2,False,500,-500.0,0
+Circuit breaker,4,2,False,500,-500.0,0
+University of Tokyo,4,2,False,500,-500.0,1
+Nurhaci,4,1,False,500,-500.0,0
+Henry II of England,4,3,False,500,-500.0,1
+Antonio Gramsci,4,2,False,500,-500.0,0
+Suzhou,4,1,False,500,-500.0,0
+Queen Victoria,4,2,False,500,-500.0,0
+Seneca the Younger,4,2,False,500,-500.0,1
+Valley of the Kings,4,2,False,500,-500.0,0
+Shikoku,4,1,False,500,-500.0,0
+War of the Austrian Succession,4,3,False,500,-500.0,1
+Bai Juyi,4,2,False,500,-500.0,0
+Crayfish,4,1,False,500,-500.0,0
+Mont Blanc,4,2,False,500,-500.0,0
+COVID-19 pandemic,4,3,False,500,-500.0,0
+Marlin,4,1,False,500,-500.0,0
+Christiaan Huygens,4,2,False,500,-500.0,0
+Driving,4,1,False,500,-500.0,0
+Carl Gustaf Emil Mannerheim,4,4,False,500,-500.0,0
+Humboldt University of Berlin,4,3,False,500,-500.0,1
+Santiago,4,1,False,500,-500.0,0
+Xi Jinping,4,2,False,500,-500.0,0
+Shower,4,1,False,500,-500.0,0
+Black Sea,4,2,False,500,-500.0,0
+Tianjin,4,1,False,500,-500.0,0
+Riyadh,4,1,False,500,-500.0,0
+Lillian Gish,4,2,False,500,-500.0,0
+Köppen climate classification,4,3,False,500,-500.0,0
+Musical instrument,3,2,False,500,-500.0,0
+Anchovy,4,1,False,500,-500.0,0
+Mario,4,1,False,500,-500.0,0
+Mojave Desert,4,2,False,500,-500.0,0
+Bombyx mori,4,2,False,500,-500.0,0
+Valencia,4,1,False,500,-500.0,0
+Aardvark,4,1,False,500,-500.0,0
+Tokugawa shogunate,4,2,False,500,-500.0,0
+Steffi Graf,4,2,False,500,-500.0,0
+Axe,4,1,False,500,-500.0,0
+Airline,4,1,False,500,-500.0,0
+Raspberry,4,1,False,500,-500.0,0
+Transantarctic Mountains,4,2,False,500,-500.0,0
+Andalusia,4,1,False,500,-500.0,0
+Silent Spring,4,2,False,500,-500.0,0
+Karl Weierstrass,4,2,False,500,-500.0,0
+Grand Slam,4,2,False,500,-500.0,0
+Peter O'Toole,4,2,False,500,-500.0,0
+Neptune,3,1,False,500,-500.0,0
+Klemens von Metternich,4,3,False,500,-500.0,0
+Geographic coordinate system,4,3,False,500,-500.0,1
+Ceres,4,1,False,500,-500.0,0
+Curiosity,4,1,False,500,-500.0,0
+Amphibian,3,1,False,500,-500.0,0
+Coulomb's law,4,2,False,500,-500.0,1
+3C 273,4,2,False,500,-500.0,0
+History of transport,4,2,False,500,-500.0,1
+Juan Perón,4,2,False,500,-500.0,0
+Pinniped,4,1,False,500,-500.0,0
+Sales tax,4,2,False,500,-500.0,0
+Minor planet,4,2,False,500,-500.0,0
+Ziggurat of Ur,4,2,False,500,-500.0,0
+Radio telescope,4,2,False,500,-500.0,0
+Factory,4,1,False,500,-500.0,0
+Great Game,4,2,False,500,-500.0,1
+Durga,4,1,False,500,-500.0,0
+Sewage treatment,4,2,False,500,-500.0,0
+Selective breeding,4,2,False,500,-500.0,0
+Magnoliids,4,1,False,500,-500.0,0
+Ken Saro-Wiwa,4,3,False,500,-500.0,0
+Satyendra Nath Bose,4,3,False,500,-500.0,0
+Bordeaux,4,1,False,500,-500.0,0
+Geophysics,4,1,False,500,-500.0,0
+Simón Bolívar,3,2,False,500,-500.0,0
+Otto the Great,4,2,False,500,-500.0,1
+Sundial,4,1,False,500,-500.0,0
+Hilbert's problems,4,2,False,500,-500.0,1
+Amphetamine,4,1,False,500,-500.0,0
+Echinoderm,4,1,False,500,-500.0,0
+David Attenborough,4,2,False,500,-500.0,0
+Amelia Earhart,4,2,False,500,-500.0,0
+Bob Marley,4,2,False,500,-500.0,0
+Benzene,4,1,False,500,-500.0,0
+Asteroid belt,4,2,False,500,-500.0,0
+Ralph Vaughan Williams,4,3,False,500,-500.0,0
+Prostate cancer,4,2,False,500,-500.0,0
+Iliad,4,1,False,500,-500.0,0
+Haitian Vodou,4,2,False,500,-500.0,0
+Lao She,4,2,False,500,-500.0,1
+Starburst galaxy,4,2,False,500,-500.0,0
+Sarmatians,4,1,False,500,-500.0,0
+Candela,4,1,False,500,-500.0,0
+Managua,4,1,False,500,-500.0,0
+Basalt,4,1,False,500,-500.0,0
+Comedy,4,1,False,500,-500.0,0
+Muhammad Ali of Egypt,4,3,False,500,-500.0,0
+Eudicots,4,1,False,500,-500.0,0
+Gulf War,4,2,False,500,-500.0,1
+Spinal cord,4,2,False,500,-500.0,0
+Cultural assimilation,4,2,False,500,-500.0,0
+Stochastic process,4,2,False,500,-500.0,1
+Nebular hypothesis,4,2,False,500,-500.0,0
+Incense,4,1,False,500,-500.0,0
+Clint Eastwood,4,2,False,500,-500.0,0
+Norman Borlaug,4,2,False,500,-500.0,0
+Transnistria,4,1,False,500,-500.0,0
+Chivalry,4,1,False,500,-500.0,0
+Country,3,1,True,170,330.0,1
+Rabbi,4,1,False,500,-500.0,0
+Diamond Sutra,4,2,False,500,-500.0,0
+Sylhet,4,1,False,500,-500.0,0
+Bicycle,3,1,False,500,-500.0,0
+Aneurysm,4,1,False,500,-500.0,0
+Brasília,4,1,False,500,-500.0,0
+Measles,4,1,False,500,-500.0,0
+Astrology,4,1,False,500,-500.0,0
+Ciudad Juárez,4,2,False,500,-500.0,0
+Azerbaijani language,4,2,False,500,-500.0,1
+Insurgency,4,1,False,500,-500.0,0
+Cycad,4,1,False,500,-500.0,0
+History of biology,4,2,False,500,-500.0,1
+Mahi-mahi,4,1,False,500,-500.0,0
+Gallic Wars,4,2,False,500,-500.0,1
+Run-DMC,4,2,False,500,-500.0,1
+Charisma,4,1,False,500,-500.0,0
+Iron Curtain,4,2,False,500,-500.0,0
+La Paz,4,2,False,500,-500.0,0
+Serial killer,4,2,False,500,-500.0,0
+Jack Kilby,4,2,False,500,-500.0,0
+Viscosity,4,1,False,500,-500.0,0
+Productivity,4,1,False,500,-500.0,0
+Mulla Sadra,4,2,False,500,-500.0,0
+Polyester,4,1,False,500,-500.0,0
+Sediment,4,1,False,500,-500.0,0
+Conspiracy theory,4,2,False,500,-500.0,0
+Circulatory system,3,2,False,500,-500.0,1
+Air conditioning,4,2,False,500,-500.0,0
+Toy Story,4,2,False,500,-500.0,0
+James Chadwick,4,2,False,500,-500.0,0
+Lenticular galaxy,4,2,False,500,-500.0,0
+Charlie Parker,4,2,False,500,-500.0,0
+Billie Holiday,4,2,False,500,-500.0,0
+Genre,4,1,False,500,-500.0,0
+Controlled-access highway,4,3,False,500,-500.0,1
+Virus,3,1,False,500,-500.0,0
+African art,4,2,False,500,-500.0,1
+Stellar black hole,4,3,False,500,-500.0,0
+Hornwort,4,1,False,500,-500.0,0
+Gothic War,4,2,False,500,-500.0,1
+Moraine,4,1,False,500,-500.0,0
+Predation,4,1,False,500,-500.0,0
+Chemical compound,3,2,False,500,-500.0,0
+Abd al-Rahman I,4,4,False,500,-500.0,1
+Cloud,3,1,False,500,-500.0,0
+Infidelity,4,1,False,500,-500.0,0
+Larisa Latynina,4,2,False,500,-500.0,0
+Application software,4,2,False,500,-500.0,0
+Georges Cuvier,4,2,False,500,-500.0,0
+History of North America,3,3,True,460,40.0,3
+Tanker,4,1,False,500,-500.0,0
+William the Silent,4,2,False,500,-500.0,0
+Seabed,4,1,False,500,-500.0,0
+Weaving,4,1,False,500,-500.0,0
+Pangaea,4,1,False,500,-500.0,0
+Crop,4,1,False,500,-500.0,0
+Acrobatics,4,1,False,500,-500.0,0
+Elasticity,4,1,False,500,-500.0,0
+Battle of Stalingrad,4,2,False,500,-500.0,0
+Treaty of Tordesillas,4,2,False,500,-500.0,0
+Sam Walton,4,2,False,500,-500.0,0
+European robin,4,2,False,500,-500.0,1
+Outsider art,4,2,False,500,-500.0,1
+Copenhagen,4,1,False,500,-500.0,0
+Antonín Dvořák,4,2,False,500,-500.0,0
+Askia Muhammad I,4,3,False,500,-500.0,1
+Coral Sea,4,2,False,500,-500.0,0
+Gangrene,4,1,False,500,-500.0,0
+Peanuts,4,1,False,500,-500.0,0
+Audrey Hepburn,4,2,False,500,-500.0,0
+Incarnation,4,1,False,500,-500.0,0
+Leon Festinger,4,2,False,500,-500.0,0
+Interplanetary medium,4,2,False,500,-500.0,0
+Extended family,4,2,True,339,161.0,2
+Immigration,4,1,False,500,-500.0,0
+Da Nang,4,2,False,500,-500.0,0
+Green Revolution,4,2,False,500,-500.0,0
+Defecation,4,1,False,500,-500.0,0
+Mount Tai,4,2,False,500,-500.0,0
+Cell signaling,4,2,False,500,-500.0,0
+World War I,3,3,True,221,279.0,3
+Beard,4,1,False,500,-500.0,0
+Abu Hanifa,4,2,False,500,-500.0,0
+Visual impairment,4,2,False,500,-500.0,0
+Italian cuisine,4,2,False,500,-500.0,0
+History of theatre,4,2,False,500,-500.0,1
+Iranian languages,4,2,False,500,-500.0,1
+Gestalt psychology,4,2,False,500,-500.0,0
+Nezha,4,1,False,500,-500.0,0
+French invasion of Russia,4,3,False,500,-500.0,1
+Financial crime,4,2,False,500,-500.0,0
+Green algae,4,2,False,500,-500.0,0
+Herbert Spencer,4,2,False,500,-500.0,0
+Amoeba,4,1,False,500,-500.0,0
+Seyfert galaxy,4,2,False,500,-500.0,0
+Computer graphics,4,2,False,500,-500.0,0
+Gulf Stream,4,2,False,500,-500.0,0
+Cerium,4,1,False,500,-500.0,0
+Diabetes,3,1,False,500,-500.0,0
+Ape,4,1,False,500,-500.0,0
+Animation,3,1,False,500,-500.0,0
+Maluku Islands,4,2,False,500,-500.0,0
+Louis de Funès,4,3,False,500,-500.0,1
+Virtue,4,1,False,500,-500.0,0
+Brothers Grimm,4,2,False,500,-500.0,0
+Bhagavad Gita,4,2,False,500,-500.0,0
+Frida Kahlo,4,2,False,500,-500.0,0
+Adolf Hitler,3,2,False,500,-500.0,0
+Approximation theory,4,2,False,500,-500.0,0
+Information technology,4,2,False,500,-500.0,0
+Damietta,4,1,False,500,-500.0,0
+Biathlon,4,1,False,500,-500.0,0
+United States dollar,4,3,False,500,-500.0,2
+Dhaka,4,1,False,500,-500.0,0
+Sugarcane,4,1,False,500,-500.0,0
+Congo River,4,2,False,500,-500.0,0
+Yue Chinese,4,2,False,500,-500.0,0
+Atmospheric pressure,4,2,False,500,-500.0,0
+Mallard,4,1,False,500,-500.0,0
+Jack L. Warner,4,3,False,500,-500.0,0
+Interferometry,4,1,False,500,-500.0,0
+Franco-Prussian War,4,3,False,500,-500.0,1
+Visakhapatnam,4,1,False,500,-500.0,0
+Cognitive development,4,2,False,500,-500.0,1
+Playground,4,1,False,500,-500.0,0
+Organophosphorus chemistry,4,2,False,500,-500.0,0
+Otto Hahn,4,2,False,500,-500.0,0
+Gustavus Adolphus,4,2,False,500,-500.0,0
+Organic farming,4,2,False,500,-500.0,0
+Annelid,4,1,False,500,-500.0,0
+Ouyang Xiu,4,2,False,500,-500.0,0
+Andrei Sakharov,4,2,False,500,-500.0,0
+Wonder Woman,4,2,False,500,-500.0,1
+Lucille Ball,4,2,False,500,-500.0,0
+Pigment,4,1,False,500,-500.0,0
+Lahore,4,1,False,500,-500.0,0
+Eritrea,4,1,False,500,-500.0,0
+Vajrayana,4,1,False,500,-500.0,0
+Athens,4,1,False,500,-500.0,0
+Telescope,3,1,False,500,-500.0,0
+Gibraltar,4,1,False,500,-500.0,0
+François Rabelais,4,2,False,500,-500.0,0
+Jami,4,1,False,500,-500.0,0
+Flamingo,4,1,False,500,-500.0,0
+Meningitis,4,1,False,500,-500.0,0
+Muscle,3,1,False,500,-500.0,0
+Vandals,4,1,False,500,-500.0,0
+Dermatology,4,1,False,500,-500.0,0
+Puppetry,4,1,False,500,-500.0,0
+Characiformes,4,1,False,500,-500.0,0
+Weekly Shōnen Jump,4,3,False,500,-500.0,0
+Achilles,4,1,False,500,-500.0,0
+Sociological theory,4,2,False,500,-500.0,0
+British Raj,4,2,False,500,-500.0,1
+History of Colombia,4,2,False,500,-500.0,1
+Theoretical computer science,4,3,False,500,-500.0,0
+Issyk-Kul,4,2,False,500,-500.0,0
+Cambodia,4,1,False,500,-500.0,0
+Mikhail Lermontov,4,2,False,500,-500.0,0
+Alligator snapping turtle,4,3,False,500,-500.0,0
+Chongqing,4,1,False,500,-500.0,0
+Scavenger,4,1,False,500,-500.0,0
+The arts,2,1,True,435,65.0,1
+V. S. Naipaul,4,3,False,500,-500.0,1
+Rajaraja I,4,2,False,500,-500.0,1
+Henry Wadsworth Longfellow,4,3,False,500,-500.0,0
+Search engine,4,2,False,500,-500.0,0
+Mouth,4,1,False,500,-500.0,0
+Art Nouveau,4,2,False,500,-500.0,1
+Lucknow,4,1,False,500,-500.0,0
+Walnut,4,1,False,500,-500.0,0
+Jeongjo of Joseon,4,2,False,500,-500.0,0
+Palaeognathae,4,1,False,500,-500.0,0
+Carpet,4,1,False,500,-500.0,0
+Egyptian hieroglyphs,4,2,False,500,-500.0,0
+Cauchy's integral formula,4,3,False,500,-500.0,0
+Early childhood education,4,3,False,500,-500.0,1
+Electromagnetic induction,4,2,False,500,-500.0,0
+Adana,4,1,False,500,-500.0,0
+Interjection,4,1,False,500,-500.0,0
+Armour,3,1,False,500,-500.0,0
+Peramelemorphia,4,1,False,500,-500.0,0
+Dreyfus affair,4,2,False,500,-500.0,0
+Radio wave,4,2,False,500,-500.0,0
+Benedict of Nursia,4,2,False,500,-500.0,0
+Peer pressure,4,2,False,500,-500.0,0
+Terrier,4,1,False,500,-500.0,0
+Anus,4,1,False,500,-500.0,0
+Helmuth von Moltke the Elder,4,4,False,500,-500.0,1
+Franz Liszt,4,2,False,500,-500.0,0
+Romance novel,4,2,False,500,-500.0,0
+Sprat,4,1,False,500,-500.0,0
+British Empire,3,2,False,500,-500.0,1
+Great Purge,4,2,False,500,-500.0,1
+Anime,4,1,False,500,-500.0,0
+Solar eclipse,4,2,False,500,-500.0,0
+House of Medici,4,2,False,500,-500.0,1
+Convection,4,1,False,500,-500.0,0
+Public transport,4,2,False,500,-500.0,1
+Antbird,4,1,False,500,-500.0,0
+Réunion,4,1,False,500,-500.0,0
+Albert Bandura,4,2,False,500,-500.0,0
+Tulip,4,1,False,500,-500.0,0
+Florence Griffith Joyner,4,3,False,500,-500.0,0
+Interpol,4,1,False,500,-500.0,0
+Irrigation,3,1,False,500,-500.0,0
+Stimulant,4,1,False,500,-500.0,0
+Visual system,4,2,False,500,-500.0,1
+Agkistrodon piscivorus,4,2,False,500,-500.0,0
+Jumping,4,1,False,500,-500.0,0
+Exponentiation,3,1,False,500,-500.0,0
+Fabaceae,4,1,False,500,-500.0,0
+Amoebozoa,4,1,False,500,-500.0,0
+Xiphosura,4,1,False,500,-500.0,0
+Hamiltonian mechanics,4,2,False,500,-500.0,0
+Adolphe Thiers,4,2,False,500,-500.0,0
+Analects,4,1,False,500,-500.0,0
+Ahmad ibn Hanbal,4,3,False,500,-500.0,0
+Muscle contraction,4,2,False,500,-500.0,0
+Military strategy,4,2,False,500,-500.0,0
+Amharic,4,1,False,500,-500.0,0
+Brewing,4,1,False,500,-500.0,0
+Pendulum,4,1,False,500,-500.0,0
+Victor Hugo,4,2,False,500,-500.0,0
+Loire,4,1,False,500,-500.0,0
+Kangxi Emperor,4,2,False,500,-500.0,0
+Monrovia,4,1,False,500,-500.0,0
+Corvus,4,1,False,500,-500.0,0
+Orion,4,1,False,500,-500.0,0
+Tumucumaque Mountains National Park,4,4,False,500,-500.0,1
+Adansonia,4,1,False,500,-500.0,0
+Amino acid,4,2,False,500,-500.0,0
+Music video,4,2,False,500,-500.0,0
+Jack London,4,2,False,500,-500.0,0
+Port Harcourt,4,2,False,500,-500.0,0
+Concussion,4,1,False,500,-500.0,0
+Behaviorism,4,1,False,500,-500.0,0
+Uruguay River,4,2,False,500,-500.0,0
+Johann Strauss II,4,3,False,500,-500.0,1
+Islamic art,4,2,False,500,-500.0,1
+Antigua and Barbuda,4,2,False,500,-500.0,0
+Sweden,4,1,False,500,-500.0,0
+The Persistence of Memory,4,2,False,500,-500.0,0
+Pipe,4,1,False,500,-500.0,0
+Minsk,4,1,False,500,-500.0,0
+Human eye,4,2,False,500,-500.0,1
+Hypertension,4,1,False,500,-500.0,0
+Georges Méliès,4,2,False,500,-500.0,0
+Christopher Wren,4,2,False,500,-500.0,0
+Humidity,4,1,False,500,-500.0,0
+Climate change,3,2,False,500,-500.0,1
+Gulf of Thailand,4,2,False,500,-500.0,0
+Thermodynamic cycle,4,2,False,500,-500.0,0
+Miguel Hidalgo y Costilla,4,4,False,500,-500.0,0
+World's fair,4,2,False,500,-500.0,1
+Lake Vostok,4,2,False,500,-500.0,0
+Tropic of Cancer,4,2,False,500,-500.0,0
+Diplomacy,3,1,False,500,-500.0,0
+Nadia Comăneci,4,2,False,500,-500.0,0
+Flight,4,1,False,500,-500.0,0
+Green tea,4,2,False,500,-500.0,0
+Burlesque,4,1,False,500,-500.0,0
+Autoimmune disease,4,2,False,500,-500.0,0
+Dispersion,4,1,False,500,-500.0,0
+Triton,4,1,False,500,-500.0,0
+Electrical resistance and conductance,4,3,False,500,-500.0,0
+Frank Gehry,4,2,False,500,-500.0,0
+Newfoundland,4,1,False,500,-500.0,0
+Comics,3,1,False,500,-500.0,0
+Flagellum,4,1,False,500,-500.0,0
+Ronald Fisher,4,2,False,500,-500.0,0
+Susa,4,1,False,500,-500.0,0
+Hill,4,1,False,500,-500.0,0
+Upanishads,4,1,False,500,-500.0,0
+Greek mythology,3,2,False,500,-500.0,0
+Beaufort Sea,4,2,False,500,-500.0,0
+N'Djamena,4,1,False,500,-500.0,0
+Urination,4,1,False,500,-500.0,0
+Mount Etna,4,2,False,500,-500.0,0
+Palk Strait,4,2,False,500,-500.0,0
+Henri de Toulouse-Lautrec,4,4,False,500,-500.0,1
+Sustainability,4,1,False,500,-500.0,0
+Borobudur,4,1,False,500,-500.0,0
+John of Damascus,4,2,False,500,-500.0,1
+Roller skating,4,2,False,500,-500.0,0
+Book,3,1,True,317,183.0,1
+Social media,4,2,False,500,-500.0,1
+Florida,4,1,False,500,-500.0,0
+Common raven,4,2,False,500,-500.0,1
+Origin of language,4,2,True,409,91.0,2
+Subtraction,4,1,False,500,-500.0,0
+Jöns Jacob Berzelius,4,3,False,500,-500.0,0
+Civics,4,1,False,500,-500.0,0
+Apollo program,4,2,False,500,-500.0,0
+Neoplasm,4,1,False,500,-500.0,0
+Barbados,4,1,False,500,-500.0,0
+Barcode,4,1,False,500,-500.0,0
+Homo erectus,4,2,False,500,-500.0,0
+Ali,3,1,False,500,-500.0,0
+Antelope,4,1,False,500,-500.0,0
+Padang,4,1,False,500,-500.0,0
+Austroasiatic languages,4,2,False,500,-500.0,1
+Kenya,3,1,False,500,-500.0,0
+Chola dynasty,4,2,False,500,-500.0,0
+Scale model,4,2,True,480,20.0,2
+Pinwheel Galaxy,4,2,False,500,-500.0,0
+Andhra Pradesh,4,2,False,500,-500.0,0
+Bear,4,1,False,500,-500.0,0
+Aeschylus,4,1,False,500,-500.0,0
+Taklamakan Desert,4,2,False,500,-500.0,0
+Al-Zahrawi,4,2,False,500,-500.0,0
+Sui dynasty,4,2,False,500,-500.0,0
+Heresy,4,1,False,500,-500.0,0
+Peru,4,1,False,500,-500.0,0
+Purgatory,4,1,False,500,-500.0,0
+West Africa,4,2,False,500,-500.0,1
+Pierre de Fermat,4,3,False,500,-500.0,1
+Cricket,4,1,False,500,-500.0,0
+Stickleback,4,1,False,500,-500.0,0
+Mycelium,4,1,False,500,-500.0,0
+John Singer Sargent,4,3,False,500,-500.0,1
+Diary,4,1,False,500,-500.0,0
+Geography,2,1,False,500,-500.0,0
+Meta-analysis,4,2,False,500,-500.0,0
+Woodpecker,4,1,False,500,-500.0,0
+Jane Addams,4,2,False,500,-500.0,0
+Cooperation,4,1,False,500,-500.0,0
+Critical point,4,2,False,500,-500.0,1
+Irving Berlin,4,2,False,500,-500.0,0
+Mexican–American War,4,3,False,500,-500.0,2
+Female reproductive system,4,3,False,500,-500.0,1
+Empathy,4,1,False,500,-500.0,0
+Berbers,4,1,False,500,-500.0,0
+History of linguistics,4,2,False,500,-500.0,1
+Ableism,4,1,False,500,-500.0,0
+Biomedical engineering,4,2,False,500,-500.0,0
+Duns Scotus,4,2,False,500,-500.0,0
+Protein,4,1,False,500,-500.0,0
+Hank Williams,4,2,False,500,-500.0,0
+Agaricus,4,1,False,500,-500.0,0
+Liberty Leading the People,4,3,False,500,-500.0,2
+Army,4,1,False,500,-500.0,0
+Prokaryote,4,1,False,500,-500.0,0
+Guanaco,4,1,False,500,-500.0,0
+Fallacy,4,1,False,500,-500.0,0
+Social theory,4,2,False,500,-500.0,1
+Samara,4,1,False,500,-500.0,0
+Oil,4,1,False,500,-500.0,0
+Magellan expedition,4,2,False,500,-500.0,0
+Joseon,4,1,False,500,-500.0,0
+Power supply,4,2,False,500,-500.0,1
+Performance art,4,2,False,500,-500.0,1
+Moustache,4,1,False,500,-500.0,0
+Traditional medicine,4,2,False,500,-500.0,1
+Word,3,1,True,199,301.0,1
+Antalya,4,1,False,500,-500.0,0
+Precipitation,4,1,False,500,-500.0,0
+Women's rights,4,2,True,446,54.0,2
+Lviv,4,1,False,500,-500.0,0
+Zagros Mountains,4,2,False,500,-500.0,0
+Red-eared slider,4,3,False,500,-500.0,0
+Ante Pavelić,4,2,False,500,-500.0,0
+Sponge,4,1,False,500,-500.0,0
+The Incoherence of the Philosophers,4,2,False,500,-500.0,0
+Chemical element,2,2,False,500,-500.0,1
+Couch,4,1,False,500,-500.0,0
+Lobster,4,1,False,500,-500.0,0
+Julius Nyerere,4,2,False,500,-500.0,0
+Dune,4,1,False,500,-500.0,0
+Ganymede,4,1,False,500,-500.0,0
+Thriller,4,1,False,500,-500.0,0
+King Lear,4,2,False,500,-500.0,0
+Henry James,4,2,False,500,-500.0,0
+Hans Christian Ørsted,4,3,False,500,-500.0,0
+Holi,4,1,False,500,-500.0,0
+Nightwear,4,1,False,500,-500.0,0
+Blackberry,4,1,False,500,-500.0,0
+Proteaceae,4,1,False,500,-500.0,0
+Trans-Saharan trade,4,3,False,500,-500.0,0
+Symphony No. 41,4,3,False,500,-500.0,1
+Euclid's Elements,4,2,False,500,-500.0,1
+Denmark,4,1,False,500,-500.0,0
+Song dynasty,4,2,False,500,-500.0,0
+Ammonium sulfate,4,2,False,500,-500.0,0
+Vietnam,3,1,False,500,-500.0,0
+Alkaloid,4,1,False,500,-500.0,0
+Peach,4,1,False,500,-500.0,0
+Divan-i Shams-i Tabrizi,4,4,False,500,-500.0,1
+Checkers,4,1,False,500,-500.0,0
+Bossa nova,4,2,False,500,-500.0,0
+Alvar Aalto,4,2,False,500,-500.0,0
+Alum,4,1,False,500,-500.0,0
+Pie,4,1,False,500,-500.0,0
+Electric battery,3,2,False,500,-500.0,0
+H II region,4,3,False,500,-500.0,2
+Relativistic mechanics,4,2,False,500,-500.0,0
+Analytic philosophy,4,2,False,500,-500.0,0
+Somali language,4,2,False,500,-500.0,1
+Horned lizard,4,2,False,500,-500.0,0
+Zhengzhou,4,1,False,500,-500.0,0
+Goethe's Faust,4,2,False,500,-500.0,0
+Wind turbine,4,2,False,500,-500.0,0
+Brunei,4,1,False,500,-500.0,0
+Xiamen,4,1,False,500,-500.0,0
+Fred Rogers,4,2,False,500,-500.0,0
+Duke Ellington,4,2,False,500,-500.0,0
+Gila monster,4,2,False,500,-500.0,0
+Lolita,4,1,False,500,-500.0,0
+Madhvacharya,4,1,False,500,-500.0,0
+Beauty,3,1,False,500,-500.0,0
+Harvard University,4,2,False,500,-500.0,1
+Welfare state,4,2,False,500,-500.0,1
+Bible,3,1,False,500,-500.0,0
+Dominica,4,1,False,500,-500.0,0
+Baboon,4,1,False,500,-500.0,0
+Gediminas,4,1,False,500,-500.0,0
+Tit,4,1,False,500,-500.0,0
+Hellenistic art,4,2,False,500,-500.0,1
+Shakira,4,1,False,500,-500.0,0
+Lottery,4,1,False,500,-500.0,0
+Canvas,4,1,False,500,-500.0,0
+Binding energy,4,2,False,500,-500.0,0
+Amine,4,1,False,500,-500.0,0
+Sundanese language,4,2,False,500,-500.0,1
+Academy Awards,4,2,False,500,-500.0,0
+Economic inequality,4,2,False,500,-500.0,0
+Congress of Berlin,4,2,False,500,-500.0,0
+John Williams,4,2,False,500,-500.0,1
+Ida Lupino,4,2,False,500,-500.0,0
+Sea turtle,4,2,False,500,-500.0,0
+Christian democracy,4,2,False,500,-500.0,0
+Pharmacy,4,1,False,500,-500.0,0
+B. R. Ambedkar,4,3,False,500,-500.0,0
+Common myna,4,2,False,500,-500.0,1
+Matsuo Bashō,4,2,False,500,-500.0,0
+Object-oriented programming,4,3,False,500,-500.0,0
+Louis XV,4,2,False,500,-500.0,0
+Pteropus,4,1,False,500,-500.0,0
+Polder,4,1,False,500,-500.0,0
+Parity,4,1,False,500,-500.0,0
+Columbidae,4,1,False,500,-500.0,0
+Mount Fuji,4,2,False,500,-500.0,0
+Building,3,1,True,463,37.0,1
+Florence Nightingale,3,2,False,500,-500.0,0
+Hertzsprung–Russell diagram,4,3,False,500,-500.0,0
+Superstition,4,1,False,500,-500.0,0
+Bob Dylan,4,2,False,500,-500.0,0
+Credit card,4,2,False,500,-500.0,0
+Gupta Empire,3,2,False,500,-500.0,0
+Amazons,4,1,False,500,-500.0,0
+Yellow River,4,2,False,500,-500.0,0
+Saint Nicholas,4,2,False,500,-500.0,0
+Combine harvester,4,2,False,500,-500.0,1
+Computer simulation,4,2,False,500,-500.0,0
+Solid,3,1,False,500,-500.0,0
+Orion Nebula,4,2,False,500,-500.0,0
+David Lean,4,2,False,500,-500.0,0
+Asexuality,4,1,False,500,-500.0,0
+Information science,4,2,False,500,-500.0,0
+Phoenix,4,1,False,500,-500.0,0
+Natural philosophy,4,2,False,500,-500.0,1
+Lymphatic system,4,2,False,500,-500.0,1
+Becquerel,4,1,False,500,-500.0,0
+Bichir,4,1,False,500,-500.0,0
+Explosion,4,1,False,500,-500.0,0
+Nursing,3,1,False,500,-500.0,0
+Abelian group,4,2,False,500,-500.0,1
+Orange River,4,2,False,500,-500.0,0
+Air force,4,2,False,500,-500.0,1
+Prosody,4,1,False,500,-500.0,0
+Movie theater,4,2,False,500,-500.0,0
+Monotreme,4,1,False,500,-500.0,0
+Human skeleton,4,2,False,500,-500.0,1
+Warehouse,4,1,False,500,-500.0,0
+Empress Dowager Cixi,4,3,False,500,-500.0,0
+Giuseppe Garibaldi,4,2,False,500,-500.0,0
+Ali Akbar Khan,4,3,False,500,-500.0,0
+White Sea,4,2,False,500,-500.0,1
+Phrygia,4,1,False,500,-500.0,0
+Algebraic structure,4,2,False,500,-500.0,1
+Tsetse fly,4,2,False,500,-500.0,0
+Benin,4,1,False,500,-500.0,0
+Springtail,4,1,False,500,-500.0,0
+Negative number,4,2,False,500,-500.0,1
+Marcus Licinius Crassus,4,3,False,500,-500.0,0
+Swallow,4,1,False,500,-500.0,0
+Vinson Massif,4,2,False,500,-500.0,0
+Estuary,4,1,False,500,-500.0,0
+Caesium,4,1,False,500,-500.0,0
+Chrétien de Troyes,4,3,False,500,-500.0,1
+Reindeer,4,1,False,500,-500.0,0
+Leonid Brezhnev,4,2,False,500,-500.0,0
+Programming paradigm,4,2,False,500,-500.0,0
+Yogurt,4,1,False,500,-500.0,0
+Cinderella,4,1,False,500,-500.0,0
+Indigenous peoples,3,2,False,500,-500.0,1
+Cloak,4,1,False,500,-500.0,0
+Edward Thorndike,4,2,False,500,-500.0,0
+Plant morphology,4,2,False,500,-500.0,0
+Rodeo,4,1,False,500,-500.0,0
+Animism,4,1,False,500,-500.0,0
+Little Women,4,2,True,446,54.0,2
+Oyster,4,1,False,500,-500.0,0
+Santa Claus,4,2,False,500,-500.0,0
+Metalworking,4,1,False,500,-500.0,0
+Han Chinese,4,2,False,500,-500.0,0
+Songhai Empire,4,2,False,500,-500.0,0
+Celia Cruz,4,2,False,500,-500.0,0
+Matter,2,1,False,500,-500.0,0
+Moraceae,4,1,False,500,-500.0,0
+André-Marie Ampère,4,3,False,500,-500.0,0
+Henna,4,1,False,500,-500.0,0
+Socratic method,4,2,False,500,-500.0,1
+Tango,4,1,False,500,-500.0,0
+"Mérida, Yucatán",4,2,False,500,-500.0,0
+Hong Taiji,4,2,False,500,-500.0,0
+Western concert flute,4,3,False,500,-500.0,1
+Hectare,4,1,False,500,-500.0,0
+Toni Morrison,4,2,False,500,-500.0,0
+Sigismund III Vasa,4,3,False,500,-500.0,0
+Andorra,4,1,False,500,-500.0,0
+Alibaba Group,4,2,False,500,-500.0,1
+Oral tradition,3,2,False,500,-500.0,0
+Cytoplasm,4,1,False,500,-500.0,0
+Alaungpaya,4,1,False,500,-500.0,0
+Protist,4,1,False,500,-500.0,0
+Eastern Front,4,2,False,500,-500.0,1
+Minneapolis,4,1,False,500,-500.0,0
+Pune,4,1,False,500,-500.0,0
+Muridae,4,1,False,500,-500.0,0

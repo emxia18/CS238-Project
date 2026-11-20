@@ -1,13 +1,13 @@
 """Load Wikipedia articles, filter them into playable Redactle puzzles, and save.
 
 By default the articles are Wikipedia's Vital Articles (~10k well-known topics,
-listed in vital_articles.json; refresh that file with `python vital.py`).
+listed in data/vital_articles.json; refresh it with `python -m scripts.vital`).
 Their text comes from the Hugging Face Wikipedia dump. The first run scans the
 whole dump once (~11 GB download, files deleted as it goes) and caches the matches to data/vital_raw.jsonl.
 
 Usage:
-  python data.py                          # vital articles
-  python data.py --source random --n 10000  # random sample of all Wikipedia
+  python -m scripts.data                            # vital articles
+  python -m scripts.data --source random --n 10000  # random Wikipedia sample
 """
 
 from __future__ import annotations
@@ -24,7 +24,8 @@ from pathlib import Path
 
 from datasets import load_dataset
 
-from redact import redact, target_keys, tokenize
+from redactle.paths import ARTICLES, VITAL_LIST, VITAL_RAW
+from redactle.redact import redact, target_keys, tokenize
 
 # ---- filter thresholds ------------------------------------------------------
 MIN_WORDS = 300            # text too short
@@ -166,12 +167,12 @@ def load_vital_raw(levels: dict[str, int], cache: Path,
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", choices=["vital", "random"], default="vital")
-    ap.add_argument("--vital-list", default="vital_articles.json")
-    ap.add_argument("--vital-cache", default="data/vital_raw.jsonl")
+    ap.add_argument("--vital-list", default=VITAL_LIST)
+    ap.add_argument("--vital-cache", default=VITAL_RAW)
     ap.add_argument("--n", type=int, default=10_000,
                     help="articles to sample (--source random)")
     ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--out", default="data/articles.jsonl")
+    ap.add_argument("--out", default=ARTICLES)
     args = ap.parse_args()
 
     if args.source == "vital":

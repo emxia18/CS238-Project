@@ -25,18 +25,19 @@ import random
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from redact import (REDACTLE_COMMON_WORDS, hidden, match_key, normalize,
-                    tokenize)
+from redactle.paths import ARTICLES
+from redactle.redact import (REDACTLE_COMMON_WORDS, hidden, match_key,
+                             normalize, tokenize)
 
-DEFAULT_DATA = "data/articles.jsonl"
+DEFAULT_DATA = ARTICLES
 
 
-def load_articles(path: str = DEFAULT_DATA, split: str | None = None,
+def load_articles(path: str | Path = DEFAULT_DATA, split: str | None = None,
                   max_level: int | None = None) -> list[dict]:
-    """Articles from data.py's output, optionally filtered by split/level."""
+    """Articles from scripts/data.py's output, optionally filtered by split/level."""
     p = Path(path)
     if not p.exists():
-        raise FileNotFoundError(f"{p} not found - run `python data.py` first.")
+        raise FileNotFoundError(f"{p} not found - run `python -m scripts.data` first.")
     arts = []
     with p.open() as f:
         for line in f:

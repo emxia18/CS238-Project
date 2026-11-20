@@ -1,7 +1,8 @@
-"""Figures for the write-up. Run after evaluate.py has produced results/*.csv.
+"""Figures for the write-up. Run after scripts/evaluate.py has produced results/*.csv.
 
-  python figures.py                     # all figures -> figures/
-  python figures.py --example Telescope # a different example game
+  python -m scripts.figures                       # all figures -> figures/
+  python -m scripts.figures --example Telescope   # a different example game
+  python -m scripts.figures --agent lm            # example game with the LM agent
 
 Outputs:
   figures/example_<title>_history.png   guesses + match counts for one game
@@ -9,7 +10,7 @@ Outputs:
                                          a few steps of that game
   figures/example_<title>_text.txt      redacted text before / mid / end
   figures/success_vs_budget.png         % solved vs guess budget, per agent
-  figures/guesses_to_solve.png          distribution of guesses (belief agent)
+  figures/guesses_to_solve.png          distribution of guesses (best agent)
 """
 
 from __future__ import annotations
@@ -24,14 +25,15 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
-from agents import make_agent  # noqa: E402
-from env import RedactleEnv, load_articles  # noqa: E402
+from redactle.agents import make_agent  # noqa: E402
+from redactle.env import RedactleEnv, load_articles  # noqa: E402
+from redactle.paths import FIGURES_DIR, RESULTS_DIR  # noqa: E402
 
 # Palette (validated: categorical slots 1-3 of the reference palette).
 BLUE, ORANGE, AQUA = "#2a78d6", "#eb6834", "#1baf7a"
 GRAY = "#c9c8c2"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e6e5e0"
-OUT = Path("figures")
+OUT = FIGURES_DIR
 
 plt.rcParams.update({
     "font.size": 10, "axes.edgecolor": INK2, "axes.labelcolor": INK,
@@ -46,11 +48,11 @@ plt.rcParams.update({
 # Example game
 # ---------------------------------------------------------------------------
 
-def trace_game(title: str, split: str = "val") -> dict:
-    """Play one game with the belief agent, recording its internals."""
+def trace_game(title: str, split: str = "val", agent_name: str = "belief") -> dict:
+    """Play one game with a belief-based agent, recording its internals."""
     train = load_articles(split="train")
     env = RedactleEnv(load_articles(split=split))
-    agent = make_agent("belief")
+    agent = make_agent(agent_name)
     obs = env.reset(title)
     agent.reset()
     steps, snapshots, done = [], [obs], False
@@ -67,7 +69,7 @@ def trace_game(title: str, split: str = "val") -> dict:
                       "candidates": cand, "belief": belief})
         snapshots.append(obs)
     return {"title": title, "targets": env.puzzle.targets, "steps": steps,
-            "snapshots": snapshots}
+            "snapshots": snapshots, "label": AGENT_STYLE[agent_name][0]}
 
 
 def plot_history(game: dict, path: Path) -> None:
@@ -85,7 +87,7 @@ def plot_history(game: dict, path: Path) -> None:
         if c == 0:
             ax.text(xi, max(counts) * 0.01, "0", ha="center", va="bottom",
                     color=INK2, fontsize=8)
-    ax.set_title(f"Belief agent on “{game['title']}”: solved in "
+    ax.set_title(f"{game['label']} on “{game['title']}”: solved in "
                  f"{len(steps)} guesses", loc="left")
     ax.text(0, -0.42, "Bars: matches per guess, in order.  Orange = title word.",
             transform=ax.transAxes, color=INK2, fontsize=8.5)
@@ -99,9 +101,14 @@ def pick_steps(game: dict, n: int = 4) -> list[int]:
     steps = game["steps"]
     peak = next((i for i, s in enumerate(steps) if s["belief"][0][1] > 0.1),
                 len(steps) // 2)
-    chosen = sorted({min(5, len(steps) - 1), peak, min(peak + 1, len(steps) - 1),
-                     len(steps) - 1})
-    return chosen[-n:]
+    last = len(steps) - 1
+    chosen = {min(5, last), peak, min(peak + 1, last), last}
+    # Short games: fill with the guesses just before the final one.
+    for i in range(last - 1, -1, -1):
+        if len(chosen) >= min(n, len(steps)):
+            break
+        chosen.add(i)
+    return sorted(chosen)[-n:]
 
 
 def plot_steps(game: dict, path: Path) -> None:
@@ -136,8 +143,8 @@ def plot_steps(game: dict, path: Path) -> None:
                      loc="left", fontsize=10)
     axes[0, 0].set_ylabel("most similar\ntraining articles", fontsize=9)
     axes[1, 0].set_ylabel("top-scoring\nnext words", fontsize=9)
-    fig.suptitle(f"What the belief agent thinks while solving "
-                 f"“{game['title']}”", x=0.05, ha="left", fontsize=12)
+    fig.suptitle(f"What the agent thinks while solving “{game['title']}” "
+                 f"({game['label']})", x=0.05, ha="left", fontsize=12)
     fig.text(0.05, -0.02, "Top: belief weight on the most similar training "
              "articles.  Bottom: highest-scoring next words; blue = word "
              "guessed, orange = title word, gray = other candidates.",
@@ -171,15 +178,16 @@ def write_text(game: dict, path: Path, words: int = 90) -> None:
 # Aggregate results
 # ---------------------------------------------------------------------------
 
-AGENT_STYLE = {"belief": ("Belief agent", BLUE),
+AGENT_STYLE = {"lm": ("Belief + DistilRoBERTa", BLUE),
+               "belief": ("Belief agent", AQUA),
                "frequency": ("Fixed frequency order", ORANGE),
-               "random": ("Random words", AQUA)}
+               "random": ("Random words", GRAY)}
 
 
 def load_results(split: str) -> dict[str, list[dict]]:
     res = {}
     for name in AGENT_STYLE:
-        p = Path("results") / f"{name}_{split}.csv"
+        p = RESULTS_DIR / f"{name}_{split}.csv"
         if p.exists():
             res[name] = list(csv.DictReader(p.open()))
     return res
@@ -215,7 +223,8 @@ def plot_success_curve(results: dict, path: Path, max_guesses: int = 500) -> Non
     plt.close(fig)
 
 
-def plot_guess_hist(rows: list[dict], path: Path, max_guesses: int = 500) -> None:
+def plot_guess_hist(rows: list[dict], path: Path, label: str,
+                    max_guesses: int = 500) -> None:
     g = np.array([int(r["guesses"]) for r in rows if r["solved"] == "True"])
     n_fail = sum(r["solved"] != "True" for r in rows)
     fig, ax = plt.subplots(figsize=(6.4, 3.4))
@@ -229,7 +238,7 @@ def plot_guess_hist(rows: list[dict], path: Path, max_guesses: int = 500) -> Non
     ax.set_xlabel("guesses to solve")
     ax.set_ylabel("articles")
     ax.grid(axis="x", visible=False)
-    ax.set_title("Belief agent: guesses needed on solved articles", loc="left")
+    ax.set_title(f"{label}: guesses needed on solved articles", loc="left")
     ax.text(0, -0.25, f"{len(g)} of {len(rows)} validation articles solved; "
             f"{n_fail} unsolved after {max_guesses} guesses (not shown).",
             transform=ax.transAxes, color=INK2, fontsize=8.5)
@@ -241,11 +250,15 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--example", default="Neptune")
     ap.add_argument("--split", default="val")
+    ap.add_argument("--agent", default="belief", choices=["belief", "lm"],
+                    help="agent for the example game")
     args = ap.parse_args()
     OUT.mkdir(exist_ok=True)
 
     slug = args.example.lower().replace(" ", "_")
-    game = trace_game(args.example, args.split)
+    if args.agent != "belief":
+        slug += f"_{args.agent}"
+    game = trace_game(args.example, args.split, args.agent)
     plot_history(game, OUT / f"example_{slug}_history.png")
     plot_steps(game, OUT / f"example_{slug}_steps.png")
     write_text(game, OUT / f"example_{slug}_text.txt")
@@ -253,8 +266,10 @@ def main() -> None:
     results = load_results(args.split)
     if results:
         plot_success_curve(results, OUT / "success_vs_budget.png")
-    if "belief" in results:
-        plot_guess_hist(results["belief"], OUT / "guesses_to_solve.png")
+    best = next((a for a in AGENT_STYLE if a in ("lm", "belief") and a in results), None)
+    if best:
+        plot_guess_hist(results[best], OUT / "guesses_to_solve.png",
+                        AGENT_STYLE[best][0])
     print(f"figures -> {OUT}/")
 
 

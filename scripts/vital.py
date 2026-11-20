@@ -4,7 +4,7 @@ The original Redactle drew its puzzles from this list. Each title gets the
 lowest (most important) level it appears in: Level 1 = 10 articles,
 Level 2 = 100, Level 3 = 1,000, Level 4 = 10,000 (levels are nested).
 
-Usage: python vital.py [--out vital_articles.json]
+Usage: python -m scripts.vital [--out data/vital_articles.json]
 """
 
 from __future__ import annotations
@@ -16,6 +16,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+from redactle.paths import VITAL_LIST
 
 API = "https://en.wikipedia.org/w/api.php"
 REQUEST_DELAY = 1.0  # seconds between requests (Wikimedia rate limits)
@@ -83,7 +85,7 @@ def article_links(page: str) -> set[str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="vital_articles.json")
+    ap.add_argument("--out", default=VITAL_LIST)
     args = ap.parse_args()
 
     pages = dict(LEVEL_PAGES)
