@@ -1,0 +1,101 @@
+title,level,n_title_words,solved,guesses,return,title_words_found,zero_hit_guesses
+Gastrointestinal tract,4,2,True,57,443.0,2,16
+Partition of India,4,2,True,45,455.0,2,6
+Category theory,4,2,True,73,427.0,2,29
+Saint Petersburg,4,2,False,500,-500.0,1,256
+Steppe,4,1,True,102,398.0,1,48
+Henri Becquerel,4,2,True,222,278.0,2,132
+Wars of the Roses,4,2,True,336,164.0,2,109
+Barge,4,1,True,94,406.0,1,39
+Chelicerata,4,1,True,32,468.0,1,0
+Cambodian genocide,4,2,False,500,-500.0,0,210
+Circuit breaker,4,2,False,500,-500.0,1,256
+University of Tokyo,4,2,True,200,300.0,2,124
+Nurhaci,4,1,True,360,140.0,1,229
+Henry II of England,4,3,True,29,471.0,3,3
+Antonio Gramsci,4,2,True,289,211.0,2,142
+Suzhou,4,1,True,84,416.0,1,40
+Queen Victoria,4,2,False,500,-500.0,1,309
+Seneca the Younger,4,2,False,500,-500.0,1,266
+Valley of the Kings,4,2,True,177,323.0,2,72
+Shikoku,4,1,True,180,320.0,1,93
+War of the Austrian Succession,4,3,True,24,476.0,3,2
+Bai Juyi,4,2,True,223,277.0,2,97
+Crayfish,4,1,False,500,-500.0,0,290
+Mont Blanc,4,2,True,144,356.0,2,41
+COVID-19 pandemic,4,3,True,59,441.0,3,3
+Marlin,4,1,True,402,98.0,1,344
+Christiaan Huygens,4,2,True,203,297.0,2,87
+Driving,4,1,True,108,392.0,1,38
+Carl Gustaf Emil Mannerheim,4,4,False,500,-500.0,0,221
+Humboldt University of Berlin,4,3,False,500,-500.0,1,346
+Santiago,4,1,True,145,355.0,1,46
+Xi Jinping,4,2,True,171,329.0,2,90
+Shower,4,1,True,82,418.0,1,22
+Black Sea,4,2,True,26,474.0,2,1
+Tianjin,4,1,True,192,308.0,1,56
+Riyadh,4,1,True,93,407.0,1,26
+Lillian Gish,4,2,False,500,-500.0,0,285
+Köppen climate classification,4,3,True,49,451.0,3,21
+Musical instrument,3,2,True,58,442.0,2,19
+Anchovy,4,1,False,500,-500.0,0,363
+Mario,4,1,True,23,477.0,1,2
+Mojave Desert,4,2,True,195,305.0,2,93
+Bombyx mori,4,2,True,274,226.0,2,123
+Valencia,4,1,True,203,297.0,1,79
+Aardvark,4,1,False,500,-500.0,0,311
+Tokugawa shogunate,4,2,True,52,448.0,2,6
+Steffi Graf,4,2,True,45,455.0,2,2
+Axe,4,1,True,152,348.0,1,74
+Airline,4,1,True,270,230.0,1,99
+Raspberry,4,1,False,500,-500.0,0,325
+Transantarctic Mountains,4,2,True,134,366.0,2,69
+Andalusia,4,1,False,500,-500.0,0,216
+Silent Spring,4,2,True,45,455.0,2,9
+Karl Weierstrass,4,2,False,500,-500.0,0,348
+Grand Slam,4,2,True,71,429.0,2,14
+Peter O'Toole,4,2,True,257,243.0,2,120
+Neptune,3,1,True,21,479.0,1,4
+Klemens von Metternich,4,3,True,81,419.0,3,10
+Geographic coordinate system,4,3,True,135,365.0,3,68
+Ceres,4,1,True,33,467.0,1,6
+Curiosity,4,1,True,139,361.0,1,57
+Amphibian,3,1,True,209,291.0,1,77
+Coulomb's law,4,2,True,62,438.0,2,17
+3C 273,4,2,False,500,-500.0,0,347
+History of transport,4,2,True,73,427.0,2,16
+Juan Perón,4,2,True,60,440.0,2,14
+Pinniped,4,1,False,500,-500.0,0,254
+Sales tax,4,2,True,60,440.0,2,9
+Minor planet,4,2,True,67,433.0,2,10
+Ziggurat of Ur,4,2,True,149,351.0,2,106
+Radio telescope,4,2,True,150,350.0,2,63
+Factory,4,1,True,62,438.0,1,8
+Great Game,4,2,False,500,-500.0,1,154
+Durga,4,1,True,50,450.0,1,8
+Sewage treatment,4,2,True,56,444.0,2,12
+Selective breeding,4,2,False,500,-500.0,1,254
+Magnoliids,4,1,True,194,306.0,1,124
+Ken Saro-Wiwa,4,3,False,500,-500.0,1,273
+Satyendra Nath Bose,4,3,False,500,-500.0,1,340
+Bordeaux,4,1,True,115,385.0,1,46
+Geophysics,4,1,True,179,321.0,1,74
+Simón Bolívar,3,2,True,108,392.0,2,32
+Otto the Great,4,2,True,230,270.0,2,81
+Sundial,4,1,False,500,-500.0,0,229
+Hilbert's problems,4,2,False,500,-500.0,1,329
+Amphetamine,4,1,True,299,201.0,1,91
+Echinoderm,4,1,True,58,442.0,1,16
+David Attenborough,4,2,False,500,-500.0,1,239
+Amelia Earhart,4,2,False,500,-500.0,0,218
+Bob Marley,4,2,False,500,-500.0,1,217
+Benzene,4,1,False,500,-500.0,0,247
+Asteroid belt,4,2,True,34,466.0,2,4
+Ralph Vaughan Williams,4,3,True,470,30.0,3,189
+Prostate cancer,4,2,True,41,459.0,2,12
+Iliad,4,1,True,120,380.0,1,38
+Haitian Vodou,4,2,True,387,113.0,2,162
+Lao She,4,2,False,500,-500.0,1,312
+Starburst galaxy,4,2,True,352,148.0,2,233
+Sarmatians,4,1,True,22,478.0,1,1
+Candela,4,1,True,135,365.0,1,71

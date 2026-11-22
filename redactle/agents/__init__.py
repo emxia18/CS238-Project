@@ -9,6 +9,7 @@ Modules:
     data    training-split vocabulary / count matrix (cached under data/)
     belief  BeliefAgent
     lm      LMBeliefAgent (imported lazily: needs torch + transformers)
+    ppo     PPOAgent: trained policy over belief candidates (redactle/rl/)
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ from __future__ import annotations
 from redactle.agents.base import Agent, FrequencyAgent, RandomAgent
 from redactle.agents.data import load_vocab
 
-AGENTS = ("random", "frequency", "belief", "lm")
+AGENTS = ("random", "frequency", "belief", "lm", "ppo")
 
 
 def make_agent(name: str, seed: int | None = None, min_df: int = 2,
@@ -32,6 +33,9 @@ def make_agent(name: str, seed: int | None = None, min_df: int = 2,
     if name == "lm":
         from redactle.agents.lm import LMBeliefAgent
         return LMBeliefAgent(vocab, **kwargs)
+    if name == "ppo":
+        from redactle.agents.ppo import PPOAgent
+        return PPOAgent(vocab, **kwargs)
     raise ValueError(f"unknown agent {name!r}; choose from {list(AGENTS)}")
 
 

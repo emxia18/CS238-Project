@@ -42,6 +42,7 @@ def run_episode(env: RedactleEnv, agent: Agent, article: dict) -> dict:
         "guesses": obs.n_guesses,
         "return": total,
         "title_words_found": len(env.puzzle.targets & obs.revealed),
+        "zero_hit_guesses": sum(g.valid and g.count == 0 for g in obs.history),
     }
 
 
@@ -59,6 +60,8 @@ def summarize(rows: list[dict], max_guesses: int) -> None:
     if solved:
         print(f"median guesses (solved): {statistics.median(r['guesses'] for r in solved):.0f}")
     print(f"mean return:         {statistics.mean(r['return'] for r in rows):.1f}")
+    zero = sum(r["zero_hit_guesses"] for r in rows) / sum(r["guesses"] for r in rows)
+    print(f"guesses revealing 0: {zero:.1%}")
     frac = statistics.mean(r["title_words_found"] / r["n_title_words"] for r in rows)
     print(f"title words found:   {frac:.1%} on average")
     levels = sorted({r["level"] for r in rows if r["level"]})
