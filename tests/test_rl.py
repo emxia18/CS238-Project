@@ -50,3 +50,29 @@ def test_teacher_matches_belief_rule():
     glob[1] = 0.9      # end-game: title bonus 10
     cand[1, 0] = np.log1p(1)
     assert teacher_action(cand, mask, glob) == 1
+
+
+def test_hunt_features_and_teacher():
+    from redactle.rl.features import n_cand_features, n_global_features
+    from redactle.rl.ppo import teacher_action
+    f = CandidateFeaturizer(load_vocab(min_df=2), use_hunt=True)
+    env = RedactleEnv([ART])
+    obs = env.reset(0)
+    f.reset()
+    for _ in range(3):
+        s = f.featurize(obs)
+        assert s.cand.shape == (K, n_cand_features(False, True))
+        assert s.glob.shape == (n_global_features(True),)
+        assert np.isfinite(s.cand).all() and np.isfinite(s.glob).all()
+        obs, *_ = env.step(s.words[teacher_action(s.cand, s.mask, s.glob,
+                                                  use_hunt=True)])
+    # End-game and no recent hunt: the teacher takes the best hunt candidate.
+    cand = np.zeros((K, n_cand_features(False, True)), dtype=np.float32)
+    cand[0, 0] = np.log1p(100)                     # belief favourite
+    cand[1, 2], cand[1, 12] = 1, 0.5               # title-length hunt word
+    mask = np.zeros(K, bool); mask[:2] = True
+    glob = np.zeros(n_global_features(True), np.float32)
+    glob[1] = 0.9
+    assert teacher_action(cand, mask, glob, use_hunt=True) == 1
+    glob[-1] = 0.5                                 # hunted last turn
+    assert teacher_action(cand, mask, glob, use_hunt=True) == 0

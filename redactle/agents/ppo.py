@@ -23,11 +23,12 @@ class PPOAgent(Agent):
         ckpt = torch.load(checkpoint, map_location="cpu")
         cfg = ckpt["config"]
         use_lm = cfg.get("use_lm", False)
-        self.policy = CandidatePolicy(cfg["hidden"], use_lm)
+        use_hunt = cfg.get("use_hunt", False)
+        self.policy = CandidatePolicy(cfg["hidden"], use_lm, use_hunt)
         self.policy.load_state_dict(ckpt["state_dict"])
         self.policy.eval()
         self.feat = CandidateFeaturizer(vocab, max_guesses=cfg["max_guesses"],
-                                        use_lm=use_lm)
+                                        use_lm=use_lm, use_hunt=use_hunt)
         self.sample = sample
         self.gen = torch.Generator().manual_seed(seed)
 

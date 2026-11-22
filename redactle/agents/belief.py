@@ -24,6 +24,13 @@ class BeliefAgent(Agent):
     min_guess_df: only guess words seen in at least this many training
                   articles; words mixing letters and digits (e.g. hex colour
                   codes like "b0e0e6") are never guessed.
+    hunt_every:   title hunt. Once the belief is confident (endgame_conf),
+                  every hunt_every-th guess goes to the title-length word
+                  with the best hunt_scores() instead. The belief soon puts
+                  all its weight on one training article, which usually lacks
+                  the puzzle's own (rare, specific) title word; hunting scores
+                  words by how many of the hunt_worlds nearest articles contain
+                  them, times idf. Needs endgame_conf; None disables.
     """
     name = "belief"
 
@@ -31,7 +38,8 @@ class BeliefAgent(Agent):
                  temperature: float = 0.5, top_k: int = 300,
                  title_bonus: float = 2.0, mix: float = 0.0,
                  min_guess_df: int = 2, endgame_conf: float | None = None,
-                 endgame_bonus: float = 10.0, own_title_penalty: float = 1.0):
+                 endgame_bonus: float = 10.0, own_title_penalty: float = 1.0,
+                 hunt_every: int | None = None, hunt_worlds: int = 50):
         import numpy as np
 
         self.np = np
@@ -47,6 +55,12 @@ class BeliefAgent(Agent):
         self.top_k, self.title_bonus, self.mix = top_k, title_bonus, mix
         self.endgame_conf, self.endgame_bonus = endgame_conf, endgame_bonus
         self.own_title_penalty = own_title_penalty
+        if hunt_every is not None and endgame_conf is None:
+            raise ValueError("hunt_every needs endgame_conf")
+        self.hunt_every, self.hunt_worlds = hunt_every, hunt_worlds
+        df = np.array([v["df"] for v in vocab], dtype=float)
+        self.idf = np.log(self.counts.shape[0] / np.maximum(df, 1))
+        self.presence = (self.counts > 0).astype(np.float32).tocsr()
         self.allowed = np.array([
             v["df"] >= min_guess_df and (v["key"].isalpha() or v["key"].isdigit())
             for v in vocab])
@@ -61,6 +75,8 @@ class BeliefAgent(Agent):
         self.guessed = np.zeros(len(self.vocab), dtype=bool)
         self.n_seen = 0
         self.length = None
+        self.n_acts = 0
+        self.last_hunt = -10**9      # act index of the last title-hunt guess
 
     def _update(self, k: int, count: int) -> None:
         """Reweight worlds by the Poisson likelihood of `count` for word k."""
@@ -115,6 +131,36 @@ class BeliefAgent(Agent):
         score[self.guessed | ~self.allowed] = -np.inf
         return score
 
+    def hunt_scores(self) -> "np.ndarray":
+        """Title-hunt score of every vocab word: share of the hunt_worlds
+        nearest training articles (rank-weighted 1/r) containing the word,
+        times its idf. Unmasked: callers apply length/guessed filters."""
+        np = self.np
+        nb = np.argpartition(self.logw, -self.hunt_worlds)[-self.hunt_worlds:]
+        nb = nb[np.argsort(-self.logw[nb])]
+        nb = nb[np.isfinite(self.logw[nb])]
+        wr = 1.0 / np.arange(1, len(nb) + 1)
+        frac = np.asarray(wr @ self.presence[nb]).ravel() / wr.sum()
+        return frac * self.idf
+
+    def hunt_guess(self, obs: Observation, w) -> str | None:
+        """The title-hunt guess if this turn is a hunt turn, else None.
+        Call once per act(), after _observe()."""
+        np = self.np
+        self.n_acts += 1
+        title_hidden = {x for x in obs.title if isinstance(x, int)}
+        if (self.hunt_every is None or not title_hidden
+                or w.max() < self.endgame_conf
+                or self.n_acts - self.last_hunt < self.hunt_every):
+            return None
+        s = self.hunt_scores()
+        s[~np.isin(self.word_len, list(title_hidden))] = -1
+        s[self.guessed | ~self.allowed] = -np.inf
+        if not np.isfinite(s.max()):
+            return None
+        self.last_hunt = self.n_acts
+        return self._pick(s, obs)
+
     def _pick(self, score, obs: Observation) -> str:
         np = self.np
         for k in np.argsort(-score)[:50]:
@@ -127,6 +173,9 @@ class BeliefAgent(Agent):
     def act(self, obs: Observation) -> str:
         self._observe(obs)
         score, top, w = self.expected_counts()
+        hunt = self.hunt_guess(obs, w)
+        if hunt is not None:
+            return hunt
         score = self.shape_scores(score, obs, top, w)
         # Kept for inspection / figures: candidate scores and belief this step.
         self.last_score, self.last_top, self.last_w = score.copy(), top, w

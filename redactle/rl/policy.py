@@ -12,7 +12,7 @@ from __future__ import annotations
 import torch
 from torch import nn
 
-from redactle.rl.features import N_GLOBAL_FEATURES, n_cand_features
+from redactle.rl.features import n_cand_features, n_global_features
 
 
 def mlp(n_in: int, hidden: int, n_out: int) -> nn.Sequential:
@@ -22,11 +22,12 @@ def mlp(n_in: int, hidden: int, n_out: int) -> nn.Sequential:
 
 
 class CandidatePolicy(nn.Module):
-    def __init__(self, hidden: int = 128, use_lm: bool = False):
+    def __init__(self, hidden: int = 128, use_lm: bool = False,
+                 use_hunt: bool = False):
         super().__init__()
-        f = n_cand_features(use_lm)
-        self.actor = mlp(f + N_GLOBAL_FEATURES, hidden, 1)
-        self.critic = mlp(N_GLOBAL_FEATURES + 2 * f, hidden, 1)
+        f, g = n_cand_features(use_lm, use_hunt), n_global_features(use_hunt)
+        self.actor = mlp(f + g, hidden, 1)
+        self.critic = mlp(g + 2 * f, hidden, 1)
 
     def forward(self, cand: torch.Tensor, mask: torch.Tensor, glob: torch.Tensor):
         """cand (B,K,F), mask (B,K) bool, glob (B,G) -> logits (B,K), value (B,)"""

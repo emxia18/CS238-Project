@@ -26,7 +26,7 @@ import torch
 import torch.nn.functional as F
 
 from redactle.env import RedactleEnv, load_articles
-from redactle.rl.features import N_CAND_FEATURES
+from redactle.rl.features import N_CAND_FEATURES, n_cand_features
 from redactle.rl.policy import CandidatePolicy
 
 
@@ -55,6 +55,7 @@ class PPOConfig:
     eval_n: int = 100
     workers: int = 6
     use_lm: bool = False      # add the masked LM's candidates and features
+    use_hunt: bool = False    # add title-hunt candidates and features
     seed: int = 0
 
 
@@ -65,26 +66,39 @@ class PPOConfig:
 _W: dict = {}
 
 
-def _init_worker(hidden: int, max_guesses: int, use_lm: bool) -> None:
+def _init_worker(hidden: int, max_guesses: int, use_lm: bool,
+                 use_hunt: bool = False) -> None:
     torch.set_num_threads(1)
     from redactle.agents.data import load_vocab
     from redactle.rl.features import CandidateFeaturizer
     _W["feat"] = CandidateFeaturizer(load_vocab(min_df=2), max_guesses=max_guesses,
-                                     use_lm=use_lm)
-    _W["policy"] = CandidatePolicy(hidden, use_lm)
+                                     use_lm=use_lm, use_hunt=use_hunt)
+    _W["policy"] = CandidatePolicy(hidden, use_lm, use_hunt)
+    _W["use_lm"], _W["use_hunt"] = use_lm, use_hunt
     _W["max_guesses"] = max_guesses
 
 
 def teacher_action(cand: np.ndarray, mask: np.ndarray, glob: np.ndarray,
-                   lm_weight: float = 3.0) -> int:
+                   lm_weight: float = 3.0, use_lm: bool | None = None,
+                   use_hunt: bool = False) -> int:
     """The hand-built agents' rule: (belief expected count [+ lm_weight x LM
     expected count]) x (1 + bonus * title-length match), with the end-game
     bonus 10 once the top world has weight >= 0.5, else 2 (BeliefAgent /
-    LMBeliefAgent with endgame_conf=0.5)."""
+    LMBeliefAgent with endgame_conf=0.5). With use_hunt, in the end-game and
+    when neither of the last 2 guesses was a hunt, the title-length candidate
+    with the best hunt score instead (hunt_every=3)."""
+    if use_lm is None:
+        use_lm = cand.shape[1] > n_cand_features(False, use_hunt)
+    endgame = glob[1] >= 0.5
+    if use_hunt and endgame and glob[-1] == 0:
+        h = cand[:, n_cand_features(use_lm)]
+        ok = mask & (cand[:, 2] > 0) & (h > 0)
+        if ok.any():
+            return int(np.argmax(np.where(ok, h, -np.inf)))
     score = np.expm1(cand[:, 0])
-    if cand.shape[1] > N_CAND_FEATURES:                  # LM features present
+    if use_lm:
         score = score + lm_weight * np.expm1(cand[:, N_CAND_FEATURES])
-    bonus = 10.0 if glob[1] >= 0.5 else 2.0
+    bonus = 10.0 if endgame else 2.0
     score = score * (1 + bonus * cand[:, 2])
     return int(np.argmax(np.where(mask, score, -np.inf)))
 
@@ -109,7 +123,9 @@ def _run_episode(task: dict) -> dict:
             obs, _, done, info = env.step(f"zz{obs.n_guesses}")
             continue
         if task["mode"] == "teacher":
-            a, logp, value = teacher_action(s.cand, s.mask, s.glob), 0.0, 0.0
+            a = teacher_action(s.cand, s.mask, s.glob, use_lm=_W["use_lm"],
+                               use_hunt=_W["use_hunt"])
+            logp, value = 0.0, 0.0
         else:
             with torch.no_grad():
                 logits, v = policy(torch.from_numpy(s.cand)[None],
@@ -156,14 +172,15 @@ class Trainer:
         self.rng = random.Random(cfg.seed)
         self.train = load_articles(split="train")   # row order = belief worlds
         self.val = load_articles(split="val")[:cfg.eval_n]
-        self.policy = CandidatePolicy(cfg.hidden, cfg.use_lm)
+        self.policy = CandidatePolicy(cfg.hidden, cfg.use_lm, cfg.use_hunt)
         self.opt = torch.optim.Adam(self.policy.parameters(), lr=cfg.lr)
         # One BLAS thread per worker; otherwise workers oversubscribe the CPU.
         for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS",
                     "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"):
             os.environ[var] = "1"
         self.pool = mp.get_context("spawn").Pool(
-            cfg.workers, _init_worker, (cfg.hidden, cfg.max_guesses, cfg.use_lm))
+            cfg.workers, _init_worker,
+            (cfg.hidden, cfg.max_guesses, cfg.use_lm, cfg.use_hunt))
         self.log_path = self.out / "log.csv"
         self.best = -1.0
 

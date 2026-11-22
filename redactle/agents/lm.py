@@ -114,6 +114,9 @@ class LMBeliefAgent(BeliefAgent):
             if g.key in self.scorer.extra_pos:
                 self.extra_guessed[self.scorer.extra_pos[g.key]] = True
         score, top, w = self.expected_counts()
+        hunt = self.hunt_guess(obs, w)
+        if hunt is not None:
+            return hunt
         lm = self.lm_counts(obs)
         extra = np.full(len(self.extra_words), -np.inf)
         if lm is not None:
