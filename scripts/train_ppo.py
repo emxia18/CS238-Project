@@ -2,7 +2,7 @@
 
 Usage (from the repo root):
   python -m scripts.train_ppo                          # defaults -> checkpoints/ppo/
-  python -m scripts.train_ppo --use-lm --workers 3 --out checkpoints/ppo_lm
+  python -m scripts.train_ppo --use-hunt --out checkpoints/ppo_hunt
   python -m scripts.train_ppo --iterations 5 --episodes-per-iter 8 \\
       --bc-episodes 16 --eval-n 20 --out checkpoints/ppo_smoke   # quick check
 
@@ -24,7 +24,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     for f in fields(PPOConfig):
         flag = f"--{f.name.replace('_', '-')}"
-        if isinstance(f.default, bool):     # --use-lm / --no-use-lm
+        if isinstance(f.default, bool):     # --use-hunt / --no-use-hunt
             ap.add_argument(flag, action=argparse.BooleanOptionalAction,
                             default=f.default)
         else:

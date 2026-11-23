@@ -22,10 +22,9 @@ def mlp(n_in: int, hidden: int, n_out: int) -> nn.Sequential:
 
 
 class CandidatePolicy(nn.Module):
-    def __init__(self, hidden: int = 128, use_lm: bool = False,
-                 use_hunt: bool = False):
+    def __init__(self, hidden: int = 128, use_hunt: bool = False):
         super().__init__()
-        f, g = n_cand_features(use_lm, use_hunt), n_global_features(use_hunt)
+        f, g = n_cand_features(use_hunt), n_global_features(use_hunt)
         self.actor = mlp(f + g, hidden, 1)
         self.critic = mlp(g + 2 * f, hidden, 1)
 

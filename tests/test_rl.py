@@ -61,13 +61,13 @@ def test_hunt_features_and_teacher():
     f.reset()
     for _ in range(3):
         s = f.featurize(obs)
-        assert s.cand.shape == (K, n_cand_features(False, True))
+        assert s.cand.shape == (K, n_cand_features(True))
         assert s.glob.shape == (n_global_features(True),)
         assert np.isfinite(s.cand).all() and np.isfinite(s.glob).all()
         obs, *_ = env.step(s.words[teacher_action(s.cand, s.mask, s.glob,
                                                   use_hunt=True)])
     # End-game and no recent hunt: the teacher takes the best hunt candidate.
-    cand = np.zeros((K, n_cand_features(False, True)), dtype=np.float32)
+    cand = np.zeros((K, n_cand_features(True)), dtype=np.float32)
     cand[0, 0] = np.log1p(100)                     # belief favourite
     cand[1, 2], cand[1, 12] = 1, 0.5               # title-length hunt word
     mask = np.zeros(K, bool); mask[:2] = True

@@ -3,16 +3,18 @@
 The open vocabulary (~130k words) is far too large an action space to learn
 over directly. Instead, each turn the belief model (BeliefAgent) proposes a
 short list of K candidate words and describes each with a feature vector; a
-policy then only has to choose among them. Candidates come from up to three
-pools: the words with the highest expected match count under the belief, the
-best belief words whose length matches a still-hidden title word, and (with
-use_lm=True) the masked LM's best guesses for the hidden title-length words,
-which may lie outside the training vocabulary. With use_hunt=True a fourth
-pool holds the best title-hunt words (BeliefAgent.hunt_scores: rare words
-common among the nearest training articles), the hunt score becomes a
-feature, and a global feature says whether the last guesses were hunts.
+policy then only has to choose among them. Candidates come from two pools:
+the words with the highest expected match count under the belief and the
+best belief words whose length matches a still-hidden title word. With
+use_hunt=True a third pool holds the best title-hunt words
+(BeliefAgent.hunt_scores: rare words common among the nearest training
+articles), the hunt score becomes a feature, and a global feature says
+whether the last guesses were hunts.
 
-    feat = CandidateFeaturizer(vocab, use_lm=False)
+The masked LM is deliberately not used here: PPO and LMBeliefAgent are
+separate models.
+
+    feat = CandidateFeaturizer(vocab, use_hunt=True)
     feat.reset(exclude_row=None)     # row of a training article to leave out
     state = feat.featurize(obs)      # State(words, cand, mask, glob)
 """
@@ -28,17 +30,15 @@ from redactle.agents.data import load_train_title_keys
 from redactle.env import Observation
 
 K = 32                      # candidates per turn
-N_CAND_FEATURES = 12        # without the LM
-N_LM_FEATURES = 3           # added with use_lm=True
+N_CAND_FEATURES = 12
 N_HUNT_FEATURES = 2         # added with use_hunt=True
 N_GLOBAL_FEATURES = 10      # + 1 with use_hunt=True
 N_HUNT_POOL = 6             # title-hunt candidates per turn
 HUNT_EVERY = 3              # teacher hunts when neither of the last 2 guesses did
 
 
-def n_cand_features(use_lm: bool, use_hunt: bool = False) -> int:
-    return (N_CAND_FEATURES + (N_LM_FEATURES if use_lm else 0)
-            + (N_HUNT_FEATURES if use_hunt else 0))
+def n_cand_features(use_hunt: bool = False) -> int:
+    return N_CAND_FEATURES + (N_HUNT_FEATURES if use_hunt else 0)
 
 
 def n_global_features(use_hunt: bool = False) -> int:
@@ -55,7 +55,7 @@ def top_desc(x: np.ndarray, n: int) -> np.ndarray:
 @dataclass
 class State:
     words: list[str]          # candidate surface forms ("" for padding)
-    vocab_idx: np.ndarray     # (K,) vocab index (>= len(vocab): LM extra word), -1 pad
+    vocab_idx: np.ndarray     # (K,) vocab index, -1 pad
     cand: np.ndarray          # (K, N_CAND_FEATURES) float32
     mask: np.ndarray          # (K,) bool, True = real candidate
     glob: np.ndarray          # (N_GLOBAL_FEATURES,) float32
@@ -67,18 +67,10 @@ class CandidateFeaturizer(BeliefAgent):
     picks a word itself."""
 
     def __init__(self, vocab: list[dict], k: int = K, max_guesses: int = 500,
-                 use_lm: bool = False, use_hunt: bool = False, **belief_kwargs):
+                 use_hunt: bool = False, **belief_kwargs):
         super().__init__(vocab, **belief_kwargs)
-        self.k, self.max_guesses, self.use_lm = k, max_guesses, use_lm
-        self.use_hunt = use_hunt
-        self.n_feat = n_cand_features(use_lm, use_hunt)
-        self.scorer = None
-        if use_lm:
-            from redactle.agents.lm import MaskedLMScorer
-            self.scorer = MaskedLMScorer(self.index)
-            self.n_extra = len(self.scorer.extra_words)
-            self.all_words = [v["word"] for v in vocab] + self.scorer.extra_words
-            self.all_len = np.concatenate([self.word_len, self.scorer.extra_len])
+        self.k, self.max_guesses, self.use_hunt = k, max_guesses, use_hunt
+        self.n_feat = n_cand_features(use_hunt)
         self.log_df = np.log1p(np.array([v["df"] for v in vocab], dtype=np.float32))
         self.log_df /= self.log_df.max()
         self.log_bg = np.log(self.background)
@@ -96,31 +88,12 @@ class CandidateFeaturizer(BeliefAgent):
         self.hits: list[int] = []
         self.hunt_top: set[str] = set()   # keys of last turn's top hunt words
         self.was_hunt: list[bool] = []    # per guess: was it a top hunt word
-        if self.use_lm:
-            self.extra_guessed = np.zeros(self.n_extra, dtype=bool)
-            self._lm_cache = (None, None)   # (hidden word count, lm counts)
-
-    def _lm(self, obs: Observation, n_hidden: int) -> np.ndarray:
-        """LM expected counts over vocab + extra words. The masked text only
-        changes when a guess reveals something, so reuse the last result
-        while the number of hidden words is unchanged."""
-        if self._lm_cache[0] != n_hidden:
-            lm = self.scorer.counts(obs, self.length)
-            if lm is None:
-                lm = np.zeros(len(self.vocab) + self.n_extra)
-            self._lm_cache = (n_hidden, lm)
-        return self._lm_cache[1]
 
     def featurize(self, obs: Observation) -> State:
         new = obs.history[self.n_seen:]
         self._observe(obs)
         self.hits.extend(g.count for g in new)
         self.was_hunt.extend(g.key in self.hunt_top for g in new)
-        if self.use_lm:
-            for g in new:
-                j = self.scorer.extra_pos.get(g.key)
-                if j is not None:
-                    self.extra_guessed[j] = True
 
         expected, top, w = self.expected_counts()
         title_lens = [x for x in obs.title if isinstance(x, int)]
@@ -136,9 +109,8 @@ class CandidateFeaturizer(BeliefAgent):
         score = np.where(ok, expected, -np.inf)
         tl_ok = ok & (n_title_of[self.word_len] > 0)
         tl_score = np.where(tl_ok, expected, -np.inf)
-        n_lm_pool = self.k * 5 // 16 if self.use_lm else 0     # 10 of 32
         n_hunt_pool = N_HUNT_POOL if self.use_hunt else 0
-        n_rest = self.k - n_lm_pool - n_hunt_pool
+        n_rest = self.k - n_hunt_pool
         n_belief = n_rest // 2 + n_rest % 2
         pool, source = [], []
 
@@ -157,44 +129,27 @@ class CandidateFeaturizer(BeliefAgent):
             hunt = self.hunt_scores()
             h_score = np.where(tl_ok, hunt, -np.inf)
             order = top_desc(h_score, self.k)
-            add(order, tl_ok, len(pool) + n_hunt_pool, 3)
+            add(order, tl_ok, len(pool) + n_hunt_pool, 2)
             best = int(order[0]) if len(order) and tl_ok[order[0]] else None
             self.hunt_top = {self.vocab[best]["key"]} if best is not None else set()
         else:
             self.hunt_top = set()
-        lm_all = None
-        if self.use_lm:
-            n_hidden = len(title_lens) + len(body_lens)
-            lm_all = self._lm(obs, n_hidden)
-            guessed_all = np.concatenate([self.guessed, self.extra_guessed])
-            allowed_all = np.concatenate([self.allowed, np.ones(self.n_extra, bool)])
-            lens = np.minimum(self.all_len, self.max_len)
-            fits = (n_title_of[lens] > 0) & (self.all_len <= self.max_len)
-            lm_ok = fits & allowed_all & ~guessed_all & (lm_all > 0)
-            lm_score = np.where(lm_ok, lm_all, -np.inf)
-            add(top_desc(lm_score, self.k), lm_ok, self.k, 2)
-        all_idx = np.array(pool, dtype=int)
+        idx = np.array(pool, dtype=int)
         source = np.array(source, dtype=int)
-        in_vocab = all_idx < len(self.vocab)
-        idx = np.where(in_vocab, all_idx, 0)     # vocab index (0 = placeholder)
 
-        # Per-candidate features (belief statistics are 0 for extra words).
+        # Per-candidate features.
         sub = self.counts[top][:, idx].toarray() if len(idx) else np.zeros((len(top), 0))
-        sub[:, ~in_vocab] = 0
         presence = w @ (sub > 0)                        # P(word occurs at all)
         title_w = np.zeros(len(idx))
         for j, wj in zip(top, w):
             if wj > 0.01:
                 t = self.world_titles[j]
                 title_w += wj * np.array([i in t for i in idx])
-        title_w[~in_vocab] = 0
-        wlen = (np.where(in_vocab, self.word_len[idx], self.all_len[all_idx])
-                if self.use_lm else self.word_len[idx])
-        wl = np.minimum(wlen, self.max_len)
-        n_title_len = n_title_of[wl]
-        n_body_len = n_body_of[wl]
-        exp = np.where(in_vocab, expected[idx], 0.0)
-        log_bg = np.where(in_vocab, self.log_bg[idx], self.log_bg.min())
+        wlen = self.word_len[idx]
+        n_title_len = n_title_of[wlen]
+        n_body_len = n_body_of[wlen]
+        exp = expected[idx]
+        log_bg = self.log_bg[idx]
         cand = np.zeros((self.k, self.n_feat), dtype=np.float32)
         n = len(idx)
         cols = [
@@ -204,27 +159,22 @@ class CandidateFeaturizer(BeliefAgent):
             np.minimum(n_title_len, 4) / 4,
             np.log1p(n_body_len) / 6,
             wlen / 10,
-            np.where(in_vocab, self.log_df[idx], 0.0),
+            self.log_df[idx],
             title_w,
             np.arange(n) / self.k,
             source == 1,                                # from the title pool
             (log_bg + 15) / 10,
             np.clip(np.log(exp / self.length + 1e-12) - log_bg, -5, 10) / 5,
         ]
-        if self.use_lm:
-            cols += [np.log1p(lm_all[all_idx]),         # LM expected matches
-                     ~in_vocab,                         # outside train vocab
-                     source == 2]                       # from the LM pool
         if self.use_hunt:
-            h = np.where(in_vocab, hunt[idx], 0.0)
-            cols += [h / 5,                             # title-hunt score
-                     source == 3]                       # from the hunt pool
+            cols += [hunt[idx] / 5,                     # title-hunt score
+                     source == 2]                       # from the hunt pool
         if n:
             cand[:n] = np.stack(cols, axis=1)
         mask = np.zeros(self.k, dtype=bool)
         mask[:n] = True
         vocab_idx = np.full(self.k, -1)
-        vocab_idx[:n] = all_idx
+        vocab_idx[:n] = idx
 
         # Global features.
         n_tokens = len(obs.title) + len(obs.body)  # rough scale only
@@ -249,7 +199,5 @@ class CandidateFeaturizer(BeliefAgent):
             last = self.was_hunt[-(HUNT_EVERY - 1):]
             glob = np.append(glob, np.float32(sum(last) / (HUNT_EVERY - 1)))
 
-        names = self.all_words if self.use_lm else None
-        words = ([names[i] for i in all_idx] if names else
-                 [self.vocab[i]["word"] for i in all_idx]) + [""] * (self.k - n)
+        words = [self.vocab[i]["word"] for i in idx] + [""] * (self.k - n)
         return State(words, vocab_idx, cand, mask, glob)
