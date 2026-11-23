@@ -1,0 +1,19 @@
+
+== belief on test (547s) ==
+episodes:            647
+success rate:        81.9%
+  solved within  50: 28.7%
+  solved within 100: 48.7%
+  solved within 200: 67.1%
+  solved within 500: 81.9%
+mean capped cost:    186.1  (failures = 500)
+median guesses (solved): 80
+mean return:         223.5
+guesses revealing 0: 62.5%
+title words found:   84.7% on average
+  level 1: 100.0% solved (1 articles)
+  level 2: 100.0% solved (5 articles)
+  level 3: 95.7% solved (47 articles)
+  level 4: 80.6% solved (594 articles)
+reachable ceiling:   98.8% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/belief_end0.5_hunt3_test.csv

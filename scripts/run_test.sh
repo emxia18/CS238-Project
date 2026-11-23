@@ -5,10 +5,10 @@
 #   bash scripts/run_test.sh          # from the repo root
 #   (detach: Ctrl-b d, reattach: tmux attach -t test)
 #
-# All models run in parallel. Per-episode results go to
-# results/<agent>_<tag>_test.csv (written by scripts.evaluate) and each
-# model's printed summary to results/test_logs/<name>.log. The LM model is
-# the slowest (~3 h); the others finish in under ~1.5 h.
+# Models run one after another (most important first). Per-episode results
+# go to results/<agent>_<tag>_test.csv (written by scripts.evaluate) and each
+# model's printed summary to results/test_logs/<name>.log. Expect ~5 h in
+# total; the LM model alone takes ~2.5-3 h.
 # Set PY to override the interpreter (it needs torch + transformers).
 
 set -u
@@ -27,12 +27,11 @@ run() {  # run <name> <evaluate args...>
     fi
 }
 
-run random    --agent random &
-run frequency --agent frequency &
-run belief    --agent belief --set endgame_conf=0.5 hunt_every=3 --tag end0.5_hunt3 &
-run lm        --agent lm --set hunt_every=3 --tag w3_end0.5_hunt3 &
-run ppo       --agent ppo --set checkpoint=checkpoints/ppo_hunt/best.pt --tag hunt_best &
-wait
+run lm        --agent lm --set hunt_every=3 --tag w3_end0.5_hunt3
+run belief    --agent belief --set endgame_conf=0.5 hunt_every=3 --tag end0.5_hunt3
+run ppo       --agent ppo --set checkpoint=checkpoints/ppo_hunt/best.pt --tag hunt_best
+run frequency --agent frequency
+run random    --agent random
 
 echo
 echo "== summary (test split) =="

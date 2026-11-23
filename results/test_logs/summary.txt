@@ -1,0 +1,5 @@
+belief     success rate: 81.9% mean capped cost: 186.1 (failures = 500) median guesses (solved): 80 
+frequency  success rate: 2.2% mean capped cost: 496.4 (failures = 500) median guesses (solved): 326 
+lm         success rate: 87.2% mean capped cost: 156.5 (failures = 500) median guesses (solved): 65 
+ppo        success rate: 81.1% mean capped cost: 195.6 (failures = 500) median guesses (solved): 83 
+random     success rate: 0.0% mean capped cost: 500.0 (failures = 500) 

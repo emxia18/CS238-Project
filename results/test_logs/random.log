@@ -1,0 +1,18 @@
+
+== random on test (77s) ==
+episodes:            647
+success rate:        0.0%
+  solved within  50: 0.0%
+  solved within 100: 0.0%
+  solved within 200: 0.0%
+  solved within 500: 0.0%
+mean capped cost:    500.0  (failures = 500)
+mean return:         -500.0
+guesses revealing 0: 99.1%
+title words found:   0.1% on average
+  level 1: 0.0% solved (1 articles)
+  level 2: 0.0% solved (5 articles)
+  level 3: 0.0% solved (47 articles)
+  level 4: 0.0% solved (594 articles)
+reachable ceiling:   98.8% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/random_test.csv

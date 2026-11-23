@@ -1,0 +1,648 @@
+title,level,n_title_words,solved,guesses,return,title_words_found,zero_hit_guesses
+Catfish,4,1,True,86,414.0,1,66
+Zhu Xi,4,2,True,166,334.0,2,122
+River,3,1,True,15,485.0,1,2
+Civil rights movement,4,3,True,126,374.0,3,41
+Nadia Boulanger,4,2,False,500,-500.0,0,316
+Post-Impressionism,4,2,True,137,363.0,2,82
+History of life,3,2,True,159,341.0,2,80
+Economy of China,4,2,True,42,458.0,2,17
+Arsenic,4,1,True,252,248.0,1,151
+The Little Prince,4,2,False,500,-500.0,1,361
+Pea,4,1,False,500,-500.0,0,293
+Metamorphoses,4,1,True,159,341.0,1,117
+Plant anatomy,4,2,False,500,-500.0,0,450
+Kharkiv,4,1,True,40,460.0,1,22
+Sea ice,4,2,True,64,436.0,2,38
+John D. Rockefeller,4,3,True,365,135.0,3,273
+Military reserve,4,2,True,136,364.0,2,114
+First Sino-Japanese War,4,4,True,22,478.0,4,4
+Yarn,4,1,True,11,489.0,1,1
+Prose poetry,4,2,True,67,433.0,2,49
+European seabass,4,2,False,500,-500.0,1,437
+Eggs as food,4,2,True,284,216.0,2,179
+Oil refinery,4,2,True,293,207.0,2,187
+Social order,4,2,True,23,477.0,2,6
+Van,4,1,True,150,350.0,1,102
+Lyre,4,1,True,168,332.0,1,108
+Caste system in India,4,3,True,123,377.0,3,60
+Renaissance architecture,4,2,True,30,470.0,2,16
+San Salvador,4,2,True,107,393.0,2,49
+Jan van Eyck,4,3,False,500,-500.0,1,324
+Indonesian National Revolution,4,3,True,172,328.0,3,108
+Tobacco mosaic virus,4,3,False,500,-500.0,1,368
+"Mary, mother of Jesus",4,3,True,306,194.0,3,128
+Alfredo Di Stéfano,4,3,True,181,319.0,3,105
+Marc Chagall,4,2,True,276,224.0,2,124
+New Britain,4,2,True,116,384.0,2,71
+William Harvey,4,2,False,500,-500.0,1,358
+History of Earth,3,2,True,105,395.0,2,46
+Subatomic particle,3,2,True,25,475.0,2,10
+Common starling,4,2,True,95,405.0,2,56
+Theoretical physics,4,2,True,89,411.0,2,58
+One Thousand and One Nights,4,3,True,496,4.0,3,281
+Skanderbeg,4,1,True,217,283.0,1,135
+Guru Gobind Singh,4,3,True,121,379.0,3,56
+Fermentation,4,1,True,35,465.0,1,18
+Philosophy of mind,4,2,True,26,474.0,2,2
+Flat-panel display,4,3,True,214,286.0,3,156
+Park,4,1,True,41,459.0,1,22
+Grace in Christianity,4,2,True,93,407.0,2,60
+The Catcher in the Rye,4,2,False,500,-500.0,0,366
+Probability density function,4,3,True,127,373.0,3,89
+The Beach Boys,4,2,False,500,-500.0,0,268
+Ufa,4,1,True,175,325.0,1,135
+Inflammation,4,1,True,73,427.0,1,58
+Manifold,4,1,True,26,474.0,1,12
+Karen Blixen,4,2,False,500,-500.0,0,340
+Marius Petipa,4,2,True,84,416.0,2,56
+Abstract machine,4,2,True,45,455.0,2,29
+Masturbation,4,1,True,93,407.0,1,62
+Land,2,1,True,49,451.0,1,21
+Impulse,4,1,True,185,315.0,1,156
+Kumārajīva,4,1,True,62,438.0,1,47
+Public health,4,2,True,23,477.0,2,8
+City-state,4,2,True,308,192.0,2,211
+Johnny B. Goode,4,3,True,265,235.0,3,220
+Suffrage,4,1,True,19,481.0,1,5
+Toshiro Mifune,4,2,True,83,417.0,2,58
+History of the Middle East,4,3,True,212,288.0,3,103
+Pension,4,1,True,120,380.0,1,50
+Trial,4,1,True,21,479.0,1,6
+Cutlery,4,1,True,153,347.0,1,125
+Condom,4,1,True,305,195.0,1,172
+Lysistrata,4,1,True,415,85.0,1,353
+Jesus,3,1,True,57,443.0,1,33
+Law of large numbers,4,3,True,221,279.0,3,160
+Moldavia,4,1,True,50,450.0,1,21
+Water purification,4,2,True,13,487.0,2,0
+Amide,4,1,True,46,454.0,1,27
+Macaque,4,1,False,500,-500.0,0,424
+Wetland,4,1,False,500,-500.0,0,320
+Porridge,4,1,True,71,429.0,1,38
+Dutch East Indies,4,3,True,71,429.0,3,22
+Kumārila Bhaṭṭa,4,2,True,187,313.0,2,135
+Apicomplexa,4,1,True,302,198.0,1,231
+Jewish literature,4,2,True,58,442.0,2,37
+Napoleonic Code,4,2,True,30,470.0,2,7
+Cygnus X-1,4,3,True,154,346.0,3,90
+Leech,4,1,False,500,-500.0,0,347
+Sophia Loren,4,2,False,500,-500.0,0,361
+Christmas carol,4,2,True,374,126.0,2,253
+History of agriculture,3,2,True,75,425.0,2,45
+Watercolor painting,4,2,True,39,461.0,2,20
+Europa,4,1,True,32,468.0,1,10
+Voting,4,1,False,500,-500.0,0,397
+Rational number,4,2,True,9,491.0,2,0
+China,3,1,True,51,449.0,1,13
+Odrysian kingdom,4,2,True,54,446.0,2,36
+Peccary,4,1,True,391,109.0,1,289
+Tannin,4,1,False,500,-500.0,0,384
+Hemispheres of Earth,4,2,False,500,-500.0,1,440
+Hereford cattle,4,2,True,19,481.0,2,9
+Housefly,4,1,True,390,110.0,1,227
+Lace,4,1,True,37,463.0,1,14
+Logic,2,1,True,41,459.0,1,26
+Automation,4,1,True,81,419.0,1,44
+Parallel computing,4,2,True,256,244.0,2,142
+Mobutu Sese Seko,4,3,True,41,459.0,3,11
+Glycogen,4,1,True,44,456.0,1,24
+Yellow Sea,4,2,False,500,-500.0,1,292
+Interpersonal relationship,4,2,True,54,446.0,2,34
+Composite material,4,2,True,106,394.0,2,70
+Maya peoples,4,2,False,500,-500.0,1,334
+Attention deficit hyperactivity disorder,4,4,True,111,389.0,4,48
+Terracotta Army,4,2,True,292,208.0,2,184
+Ahmose I,4,2,True,22,478.0,2,12
+Plasticity,4,1,True,175,325.0,1,122
+Ulysses,4,1,True,217,283.0,1,159
+Equator,4,1,True,74,426.0,1,47
+Tuna,4,1,True,56,444.0,1,26
+Banff National Park,4,3,False,500,-500.0,2,221
+Academic art,4,2,True,56,444.0,2,27
+Palliative care,4,2,True,29,471.0,2,15
+Jack Nicklaus,4,2,True,137,363.0,2,75
+Attack aircraft,4,2,True,48,452.0,2,22
+Go,4,1,False,500,-500.0,0,416
+Typha,4,1,False,500,-500.0,0,395
+Early human migrations,4,3,True,230,270.0,3,127
+West Asia,4,2,True,23,477.0,2,5
+Sikh Empire,4,2,True,55,445.0,2,27
+Barometer,4,1,True,200,300.0,1,164
+Euphorbiaceae,4,1,False,500,-500.0,0,377
+Contemporary classical music,4,3,True,48,452.0,3,24
+Ajuran Sultanate,4,2,True,28,472.0,2,10
+Sweet potato,4,2,True,123,377.0,2,68
+Dishwasher,4,1,False,500,-500.0,0,237
+Xi'an,4,1,False,500,-500.0,0,352
+Survey methodology,4,2,True,67,433.0,2,37
+Nuclear arms race,4,3,True,415,85.0,3,243
+Cobalt,4,1,True,123,377.0,1,72
+Edward Bernays,4,2,False,500,-500.0,1,394
+Chicken as food,4,2,True,75,425.0,2,35
+Rabindranath Tagore,3,2,True,294,206.0,2,221
+Empire style,4,2,True,42,458.0,2,20
+Hongwu Emperor,4,2,True,20,480.0,2,8
+Afroasiatic languages,4,2,True,36,464.0,2,18
+Scramble for Africa,3,2,True,113,387.0,2,63
+Analytical psychology,4,2,True,245,255.0,2,107
+Turkic peoples,4,2,True,25,475.0,2,9
+International law,4,2,True,46,454.0,2,22
+William Henry Bragg,4,3,True,367,133.0,3,277
+Giorgio Vasari,4,2,True,57,443.0,2,40
+Mandalay,4,1,True,77,423.0,1,46
+Parasitism,4,1,True,125,375.0,1,93
+Livestock,4,1,True,13,487.0,1,4
+Biography,4,1,True,210,290.0,1,149
+Bhutan,4,1,True,59,441.0,1,23
+Magnetostatics,4,1,True,423,77.0,1,315
+Golf,4,1,True,58,442.0,1,19
+Rod Laver,4,2,True,65,435.0,2,19
+Chopsticks,4,1,True,211,289.0,1,170
+Arcturus,4,1,True,38,462.0,1,18
+Cockroach,4,1,False,500,-500.0,0,277
+Suffering,4,1,False,500,-500.0,0,325
+Ring Nebula,4,2,True,78,422.0,2,45
+John Snow,4,2,False,500,-500.0,1,399
+The Sound and the Fury,4,2,False,500,-500.0,0,325
+Cultivar,4,1,False,500,-500.0,0,376
+Sporophyte,4,1,True,15,485.0,1,7
+Heliconia,4,1,True,204,296.0,1,162
+Mombasa,4,1,True,495,5.0,1,340
+Hajj,4,1,True,178,322.0,1,107
+Amman,4,1,True,436,64.0,1,313
+Aztecs,3,1,True,63,437.0,1,32
+Karakum Desert,4,2,False,500,-500.0,1,415
+Daylight saving time,4,3,False,500,-500.0,2,252
+Sahara,3,1,True,111,389.0,1,62
+Sky,4,1,True,61,439.0,1,34
+Yam,4,1,True,110,390.0,1,71
+Drainage basin,4,2,True,31,469.0,2,18
+Capital,4,1,True,20,480.0,1,6
+Monster,4,1,False,500,-500.0,0,413
+Waste management,4,2,True,64,436.0,2,31
+Autobiography,4,1,True,112,388.0,1,77
+Melanesia,4,1,True,53,447.0,1,30
+Gauge boson,4,2,True,22,478.0,2,7
+Chandragupta II,4,2,True,43,457.0,2,29
+Breakfast cereal,4,2,True,444,56.0,2,349
+Nibelungenlied,4,1,False,500,-500.0,0,319
+Spruce,4,1,True,133,367.0,1,99
+Raj Kapoor,4,2,True,81,419.0,2,46
+Willow,4,1,False,500,-500.0,0,346
+Cretaceous,4,1,True,28,472.0,1,11
+Nose,4,1,True,267,233.0,1,205
+Hayreddin Barbarossa,4,2,True,269,231.0,2,222
+Livonian War,4,2,True,189,311.0,2,99
+Tikal,4,1,True,114,386.0,1,48
+Syama Sastri,4,2,True,53,447.0,2,23
+Multivariable calculus,4,2,True,73,427.0,2,52
+Haloalkane,4,1,True,30,470.0,1,8
+Sofya Kovalevskaya,4,2,False,500,-500.0,0,407
+Edward R. Murrow,4,3,True,190,310.0,3,100
+Amda Seyon I,4,3,True,139,361.0,3,78
+Tropical climate,4,2,True,24,476.0,2,12
+Douglas MacArthur,4,2,True,188,312.0,2,98
+Dire Dawa,4,2,True,70,430.0,2,32
+Invasion,4,1,True,46,454.0,1,26
+Atahualpa,4,1,True,37,463.0,1,26
+Benjamin Disraeli,4,2,True,468,32.0,2,301
+White,4,1,True,29,471.0,1,13
+Criminal law,4,2,True,17,483.0,2,6
+Chemistry,2,1,True,77,423.0,1,49
+Cossacks,4,1,True,95,405.0,1,36
+Gothic architecture,4,2,True,43,457.0,2,20
+Staff,4,1,True,99,401.0,1,64
+Impartiality,4,1,False,500,-500.0,0,425
+Statutory interpretation,4,2,True,114,386.0,2,85
+Beijing,3,1,True,32,468.0,1,12
+Discourse on the Method,4,2,True,195,305.0,2,153
+IPhone,4,1,True,15,485.0,1,3
+ETH Zurich,4,2,False,500,-500.0,0,356
+Consciousness,3,1,True,23,477.0,1,13
+Sargasso Sea,4,2,True,173,327.0,2,128
+Bridge,3,1,True,146,354.0,1,110
+National Autonomous University of Mexico,4,4,False,500,-500.0,2,303
+Anselm of Canterbury,4,2,True,151,349.0,2,111
+Felt,4,1,True,284,216.0,1,209
+De revolutionibus orbium coelestium,4,4,True,22,478.0,4,5
+Indian art,4,2,True,100,400.0,2,56
+Administrative law,4,2,True,41,459.0,2,19
+Variable star,4,2,True,32,468.0,2,12
+Social equality,3,2,True,32,468.0,2,15
+Sales,4,1,True,32,468.0,1,11
+T. E. Lawrence,4,3,True,138,362.0,3,102
+Czech Republic,4,2,True,43,457.0,2,21
+Combination,4,1,True,25,475.0,1,14
+Bantu languages,4,2,True,119,381.0,2,67
+Inner Mongolia,4,2,True,111,389.0,2,58
+Mental representation,4,2,True,64,436.0,2,40
+George Balanchine,4,2,True,149,351.0,2,117
+Nanyue,4,1,True,116,384.0,1,62
+Darter,4,1,True,218,282.0,1,84
+Stadium,4,1,True,45,455.0,1,20
+Avocado,4,1,False,500,-500.0,0,291
+Poison,4,1,True,294,206.0,1,155
+Alexander Fleming,4,2,False,500,-500.0,0,409
+Prophecy,4,1,True,438,62.0,1,302
+Attila,4,1,True,72,428.0,1,39
+Land reclamation,4,2,False,500,-500.0,1,341
+Yalta Conference,4,2,True,83,417.0,2,44
+Samuel Johnson,4,2,True,365,135.0,2,202
+Antarctic Peninsula,4,2,True,33,467.0,2,12
+Referendum,4,1,True,201,299.0,1,162
+A Vindication of the Rights of Woman,4,3,False,500,-500.0,2,264
+Alexander Dubček,4,2,True,149,351.0,2,66
+Adrien-Marie Legendre,4,3,True,73,427.0,3,38
+Windmill,4,1,True,159,341.0,1,112
+Africa,2,1,True,19,481.0,1,8
+Acupuncture,4,1,True,304,196.0,1,246
+Lê Lợi,4,2,True,109,391.0,2,70
+Cognition,3,1,True,22,478.0,1,8
+Law,2,1,True,15,485.0,1,1
+Fanny Blankers-Koen,4,3,False,500,-500.0,0,365
+Second Opium War,4,3,True,76,424.0,3,35
+Hunger,4,1,True,30,470.0,1,15
+Three-dimensional space,3,3,True,43,457.0,3,14
+Gödel's incompleteness theorems,4,3,True,200,300.0,3,63
+American Revolution,3,2,True,80,420.0,2,32
+Brahmagupta,4,1,True,125,375.0,1,97
+Prussia,4,1,True,27,473.0,1,14
+Public policy,4,2,True,12,488.0,2,2
+Ramayana,4,1,True,6,494.0,1,0
+Remote control,4,2,True,100,400.0,2,65
+Sulfate,4,1,True,112,388.0,1,85
+Bullying,4,1,True,22,478.0,1,5
+Comparative religion,4,2,True,77,423.0,2,49
+Bill Gates,4,2,True,41,459.0,2,10
+Hokkaido,4,1,True,154,346.0,1,120
+Sanitation,3,1,True,140,360.0,1,101
+Turkmenistan,4,1,True,211,289.0,1,158
+Serfdom,4,1,False,500,-500.0,0,373
+Ford Motor Company,4,3,True,123,377.0,3,70
+Latin American literature,4,3,True,99,401.0,3,45
+Cato the Elder,4,2,True,321,179.0,2,179
+Clement Attlee,4,2,False,500,-500.0,0,264
+Jiajing Emperor,4,2,False,500,-500.0,1,364
+Fork,4,1,True,95,405.0,1,68
+Hmong people,4,2,True,226,274.0,2,149
+Criminology,4,1,True,174,326.0,1,119
+Formaldehyde,4,1,True,168,332.0,1,122
+Snack,4,1,True,40,460.0,1,13
+Kuril Islands,4,2,True,55,445.0,2,20
+Banjo Paterson,4,2,False,500,-500.0,0,407
+Normans,4,1,False,500,-500.0,0,338
+Mercury,4,1,True,104,396.0,1,56
+Gene,3,1,True,114,386.0,1,47
+Tunnel,4,1,True,17,483.0,1,8
+Rembrandt,3,1,True,37,463.0,1,25
+Nightjar,4,1,False,500,-500.0,0,397
+Messiah,4,1,False,500,-500.0,0,362
+Observational study,4,2,True,49,451.0,2,29
+Chinese folk religion,3,3,True,158,342.0,3,87
+Electron shell,4,2,True,43,457.0,2,21
+Supermassive black hole,4,3,True,10,490.0,3,0
+Foraminifera,4,1,True,444,56.0,1,312
+Chinese literature,4,2,True,18,482.0,2,5
+Elizabeth II,4,2,True,38,462.0,2,23
+Benito Mussolini,4,2,True,72,428.0,2,33
+Idolatry,4,1,True,37,463.0,1,20
+Calligraphy,3,1,True,102,398.0,1,72
+Carpentry,4,1,False,500,-500.0,0,299
+Lawn mower,4,2,True,407,93.0,2,201
+Mohammad Reza Pahlavi,4,3,False,500,-500.0,1,199
+Scorpaeniformes,4,1,False,500,-500.0,0,418
+Prehistoric art,4,2,True,43,457.0,2,22
+Augustin-Jean Fresnel,4,3,False,500,-500.0,1,316
+Syngas,4,1,True,51,449.0,1,35
+Somatosensory system,4,2,True,94,406.0,2,71
+Charles Babbage,4,2,True,134,366.0,2,95
+Archimedes,3,1,True,103,397.0,1,79
+Green politics,4,2,True,465,35.0,2,300
+Horseradish,4,1,True,39,461.0,1,19
+Muammar Gaddafi,4,2,True,228,272.0,2,90
+Wrought iron,4,2,True,83,417.0,2,44
+Club,4,1,True,294,206.0,1,239
+Pleurotus ostreatus,4,2,False,500,-500.0,0,453
+Modest Mussorgsky,4,2,True,117,383.0,2,72
+Giotto,4,1,True,108,392.0,1,79
+Paul Kagame,4,2,False,500,-500.0,0,226
+Sitcom,4,1,True,101,399.0,1,71
+Arabian Desert,4,2,True,108,392.0,2,75
+Anarchism,3,1,True,31,469.0,1,13
+Food industry,4,2,True,25,475.0,2,3
+Michiel de Ruyter,4,3,False,500,-500.0,1,322
+Desertion,4,1,True,483,17.0,1,385
+Military organization,4,2,True,63,437.0,2,47
+Faroe Islands,4,2,False,500,-500.0,0,328
+Jordan,4,1,True,67,433.0,1,23
+New Year's Eve,4,3,True,60,440.0,3,26
+Lava,4,1,True,43,457.0,1,15
+Sexual fetishism,4,2,True,168,332.0,2,121
+Authentication,4,1,True,47,453.0,1,26
+Technical drawing,4,2,True,55,445.0,2,34
+Orhan Pamuk,4,2,False,500,-500.0,0,385
+Brisbane,4,1,True,223,277.0,1,127
+Dust,4,1,True,276,224.0,1,211
+Valparaíso,4,1,True,219,281.0,1,178
+Real estate,4,2,False,500,-500.0,0,428
+Tinamou,4,1,False,500,-500.0,0,297
+Greater Antilles,4,2,True,310,190.0,2,241
+Weather front,4,2,True,57,443.0,2,25
+Culinary arts,4,2,False,500,-500.0,1,406
+Fjord,4,1,False,500,-500.0,0,321
+Henan,4,1,True,15,485.0,1,1
+Globe,4,1,True,131,369.0,1,86
+Group theory,4,2,True,30,470.0,2,13
+Military science,4,2,True,60,440.0,2,31
+Percy Bysshe Shelley,4,3,True,151,349.0,3,97
+Radiography,4,1,True,23,477.0,1,8
+Mullet,4,1,False,500,-500.0,0,456
+Hydroelectricity,4,1,True,28,472.0,1,13
+Battle,4,1,True,39,461.0,1,24
+Collage,4,1,True,173,327.0,1,108
+Chaitanya Mahaprabhu,4,2,True,155,345.0,2,112
+1976 Tangshan earthquake,4,3,False,500,-500.0,0,352
+Loan,4,1,True,83,417.0,1,39
+Prescription drug,4,2,True,92,408.0,2,52
+Spanish American wars of independence,4,4,True,318,182.0,4,183
+Blockade,4,1,True,134,366.0,1,96
+Zapotec civilization,4,2,True,38,462.0,2,18
+Compiler,4,1,True,27,473.0,1,11
+Armenian genocide,4,2,True,28,472.0,2,5
+Florence Cathedral,4,2,True,104,396.0,2,58
+Ancient Greek,4,2,True,217,283.0,2,135
+Rothschild family,4,2,False,500,-500.0,1,405
+Ibn Taymiyya,4,2,False,500,-500.0,1,208
+Empire of Japan,4,2,True,188,312.0,2,67
+Freethought,4,1,True,286,214.0,1,184
+Ideology,3,1,True,25,475.0,1,11
+Reading,4,1,True,292,208.0,1,141
+New World warbler,4,3,True,493,7.0,3,390
+Futurism,4,1,True,64,436.0,1,35
+Greeting,4,1,True,273,227.0,1,224
+Chili pepper,4,2,True,73,427.0,2,27
+Husband,4,1,True,139,361.0,1,117
+Bohr model,4,2,True,72,428.0,2,20
+Amr ibn al-As,4,3,True,20,480.0,3,1
+Oil shale,4,2,True,118,382.0,2,72
+Nusrat Fateh Ali Khan,4,4,False,500,-500.0,0,316
+The Great Wave off Kanagawa,4,3,True,88,412.0,3,36
+Wuthering Heights,4,2,True,436,64.0,2,271
+Pond,4,1,False,500,-500.0,0,343
+Dnipro,4,1,True,250,250.0,1,104
+Gout,4,1,True,129,371.0,1,63
+Sodium nitrate,4,2,True,80,420.0,2,51
+Capillary,4,1,True,35,465.0,1,15
+Surgery,3,1,True,15,485.0,1,5
+Garage,4,1,True,224,276.0,1,177
+Scroll,4,1,True,323,177.0,1,269
+Ethnic conflict,4,2,True,70,430.0,2,38
+Grapefruit,4,1,True,87,413.0,1,53
+Great white shark,4,3,True,244,256.0,3,147
+Diogenes,4,1,True,96,404.0,1,76
+Aquarium,4,1,True,147,353.0,1,94
+Battleship,4,1,True,30,470.0,1,15
+Karl Pearson,4,2,True,74,426.0,2,34
+Sheba,4,1,True,123,377.0,1,76
+Hypothermia,4,1,True,58,442.0,1,41
+Tarantula,4,1,True,440,60.0,1,248
+French Revolutionary Wars,4,3,True,51,449.0,3,20
+El Niño–Southern Oscillation,4,4,True,47,453.0,4,15
+Electrical grid,4,2,True,59,441.0,2,27
+Mustard,4,1,True,180,320.0,1,134
+Oriental Orthodox Churches,4,3,True,71,429.0,3,42
+Aïr Mountains,4,2,True,29,471.0,2,14
+Bronchitis,4,1,True,22,478.0,1,8
+Warship,4,1,True,389,111.0,1,262
+Babylon,4,1,True,93,407.0,1,66
+Starfish,4,1,True,38,462.0,1,18
+Color vision,4,2,True,15,485.0,2,1
+Soy milk,4,2,True,80,420.0,2,50
+Fairy,4,1,True,246,254.0,1,156
+Sabbath,4,1,True,184,316.0,1,123
+Lake Onega,4,2,False,500,-500.0,1,320
+Toungoo dynasty,4,2,True,49,451.0,2,25
+Austria-Hungary,4,2,True,27,473.0,2,8
+Smoking,3,1,True,7,493.0,1,1
+Philosophy,1,1,True,34,466.0,1,17
+Lake Balkhash,4,2,False,500,-500.0,1,375
+Driving under the influence,4,2,True,417,83.0,2,296
+Portrait,4,1,True,200,300.0,1,170
+Spectrometer,4,1,True,69,431.0,1,49
+Indo-Gangetic Plain,4,3,True,84,416.0,3,36
+Machado de Assis,4,3,False,500,-500.0,1,398
+Club,4,1,True,359,141.0,1,279
+Saturn V,4,2,True,50,450.0,2,22
+Odonata,4,1,True,53,447.0,1,33
+Norman Conquest,4,2,True,246,254.0,2,173
+Kind of Blue,4,2,True,220,280.0,2,123
+Hairstyle,4,1,True,72,428.0,1,50
+Ambulance,4,1,True,80,420.0,1,43
+Louis Philippe I,4,3,True,11,489.0,3,2
+Leviathan,4,1,False,500,-500.0,0,329
+Ancient Egypt,3,2,True,12,488.0,2,1
+Juan Manuel Fangio,4,3,True,139,361.0,3,83
+Dacians,4,1,False,500,-500.0,0,352
+Large intestine,4,2,True,33,467.0,2,24
+Calcium carbonate,4,2,True,52,448.0,2,32
+Latin script,4,2,True,17,483.0,2,6
+Eleanor Roosevelt,4,2,False,500,-500.0,0,307
+Travel,4,1,True,165,335.0,1,132
+Theaceae,4,1,False,500,-500.0,0,439
+Lionel Messi,4,2,True,19,481.0,2,5
+Kazan,4,1,True,47,453.0,1,19
+Glasses,4,1,False,500,-500.0,0,389
+IBM,4,1,True,282,218.0,1,204
+Palace of Versailles,4,2,True,44,456.0,2,18
+Algebraic variety,4,2,True,20,480.0,2,6
+Igbo language,4,2,False,500,-500.0,1,273
+Ozone depletion,4,2,True,153,347.0,2,90
+Death of a Salesman,4,2,True,64,436.0,2,42
+Carp,4,1,True,41,459.0,1,16
+Medication,3,1,False,500,-500.0,0,280
+Georges Clemenceau,4,2,True,402,98.0,2,258
+Jean Piaget,4,2,True,208,292.0,2,90
+Artistic gymnastics,4,2,True,95,405.0,2,64
+Henri Cartier-Bresson,4,3,False,500,-500.0,1,387
+Crusader states,4,2,True,161,339.0,2,51
+Minoan civilization,4,2,True,32,468.0,2,11
+Fence,4,1,True,418,82.0,1,339
+Cossack Hetmanate,4,2,True,73,427.0,2,29
+Rum,4,1,True,117,383.0,1,71
+Luminosity,4,1,True,34,466.0,1,14
+Father,4,1,True,117,383.0,1,97
+West Siberian Plain,4,3,False,500,-500.0,2,396
+Arminianism,4,1,True,75,425.0,1,59
+Academic journal,4,2,True,90,410.0,2,52
+Gulf of Carpentaria,4,2,True,215,285.0,2,157
+Islam,3,1,True,46,454.0,1,10
+Dag Hammarskjöld,4,2,True,264,236.0,2,192
+Weed,4,1,True,117,383.0,1,66
+Geodetic datum,4,2,True,56,444.0,2,30
+Arm,4,1,True,393,107.0,1,310
+Alexis de Tocqueville,4,3,False,500,-500.0,1,344
+Frigatebird,4,1,True,20,480.0,1,12
+Industrial engineering,4,2,True,19,481.0,2,7
+Uto-Aztecan languages,4,3,False,500,-500.0,1,393
+Space Race,4,2,True,101,399.0,2,18
+Human overpopulation,4,2,True,70,430.0,2,33
+Prejudice,4,1,True,28,472.0,1,12
+Aircraft,3,1,True,13,487.0,1,4
+Juniper,4,1,False,500,-500.0,0,411
+Ulugh Beg,4,2,True,95,405.0,2,37
+Lake Winnipeg,4,2,False,500,-500.0,1,392
+Oedipus Rex,4,2,False,500,-500.0,0,355
+The Birth of a Nation,4,2,False,500,-500.0,1,275
+Active transport,4,2,True,117,383.0,2,73
+Barley,4,1,True,65,435.0,1,40
+Anal sex,4,2,True,32,468.0,2,9
+French Indochina,4,2,True,8,492.0,2,1
+Robinson Crusoe,4,2,False,500,-500.0,0,396
+Sino-Burmese War,4,3,True,161,339.0,3,104
+Abortion,3,1,True,30,470.0,1,15
+Papal States,4,2,True,146,354.0,2,106
+Paper,3,1,True,161,339.0,1,106
+Belize,4,1,True,55,445.0,1,33
+Body piercing,4,2,False,500,-500.0,1,354
+Sibling,4,1,False,500,-500.0,0,229
+Tissue,4,1,True,16,484.0,1,8
+Maya script,4,2,True,74,426.0,2,37
+Zaha Hadid,4,2,False,500,-500.0,0,284
+Fred Astaire,4,2,True,271,229.0,2,142
+Camping,4,1,False,500,-500.0,0,411
+Degenerate matter,4,2,True,376,124.0,2,237
+Bird,3,1,True,242,258.0,1,83
+Supergiant,4,1,True,20,480.0,1,13
+Taraxacum,4,1,True,95,405.0,1,64
+Hematology,4,1,True,252,248.0,1,230
+Bone,3,1,True,53,447.0,1,24
+Iguazu Falls,4,2,False,500,-500.0,1,354
+Larva,4,1,True,383,117.0,1,330
+Bengali language,3,2,True,38,462.0,2,19
+Agave,4,1,False,500,-500.0,0,375
+Tuscany,4,1,True,118,382.0,1,70
+Classical antiquity,3,2,True,88,412.0,2,47
+Epidemic,4,1,True,59,441.0,1,40
+Afonso I of Portugal,4,3,True,173,327.0,3,141
+Aqueduct,4,1,True,46,454.0,1,24
+Vedanta,4,1,True,16,484.0,1,7
+September 11 attacks,4,3,True,307,193.0,3,133
+Chisel,4,1,True,211,289.0,1,171
+Penang,4,1,False,500,-500.0,0,317
+History of Ethiopia,4,2,True,64,436.0,2,26
+Theodora,4,1,False,500,-500.0,0,368
+Classical mechanics,3,2,True,61,439.0,2,32
+Sense,3,1,True,62,438.0,1,21
+Chard,4,1,True,161,339.0,1,125
+George Carlin,4,2,True,232,268.0,2,169
+Japanese art,4,2,True,239,261.0,2,175
+Bryophyte,4,1,True,299,201.0,1,159
+Bremsstrahlung,4,1,True,78,422.0,1,45
+Oran,4,1,True,497,3.0,1,305
+Rudolf Virchow,4,2,False,500,-500.0,0,372
+Moss,4,1,True,94,406.0,1,43
+Nikolai Gogol,4,2,True,99,401.0,2,53
+Binomial distribution,4,2,True,14,486.0,2,3
+Apricot,4,1,False,500,-500.0,0,344
+Apologetics,4,1,False,500,-500.0,0,343
+Instrumentation,4,1,True,78,422.0,1,45
+Air pollution,4,2,True,42,458.0,2,15
+Physical examination,4,2,True,193,307.0,2,144
+International relations,4,2,True,31,469.0,2,9
+Boson,4,1,True,39,461.0,1,19
+Zhang Qian,4,2,True,68,432.0,2,25
+Egyptian Museum,4,2,True,72,428.0,2,51
+Atropatene,4,1,True,237,263.0,1,175
+Basil,4,1,False,500,-500.0,0,390
+Raphael,4,1,True,87,413.0,1,46
+Umm Kulthum,4,2,False,500,-500.0,0,364
+Arthritis,3,1,True,60,440.0,1,39
+Zara Yaqob,4,2,True,328,172.0,2,227
+Martin Luther,3,2,True,74,426.0,2,43
+Furniture,3,1,True,80,420.0,1,58
+Sauce,4,1,True,40,460.0,1,19
+Gravitational singularity,4,2,True,17,483.0,2,2
+Hafez,4,1,True,112,388.0,1,72
+Bose–Einstein condensate,4,3,True,84,416.0,3,39
+Rapid transit,4,2,True,114,386.0,2,66
+The Tempest,4,1,False,500,-500.0,0,344
+John Constable,4,2,False,500,-500.0,1,282
+Thoroughbred,4,1,True,21,479.0,1,7
+Joseph Dalton Hooker,4,3,True,169,331.0,3,116
+Izumo no Okuni,4,3,False,500,-500.0,1,443
+"San Juan, Puerto Rico",4,4,True,181,319.0,4,100
+Pipeline,4,1,True,182,318.0,1,113
+Plant stem,4,2,True,112,388.0,2,53
+Economic growth,4,2,True,33,467.0,2,12
+Mount Kosciuszko,4,2,False,500,-500.0,1,377
+Central processing unit,4,3,False,500,-500.0,1,309
+Middle age,4,2,True,118,382.0,2,91
+A. C. Bhaktivedanta Swami Prabhupada,4,4,True,279,221.0,4,199
+Hexapoda,4,1,True,56,444.0,1,34
+Hoe,4,1,True,102,398.0,1,67
+Complex analysis,4,2,True,111,389.0,2,81
+Kublai Khan,4,2,True,33,467.0,2,10
+Arequipa,4,1,True,152,348.0,1,71
+Three Kingdoms,4,2,True,328,172.0,2,189
+Sexual reproduction,4,2,True,8,492.0,2,1
+Georges Danton,4,2,False,500,-500.0,1,284
+Bosnia and Herzegovina,4,2,True,56,444.0,2,20
+Piranha,4,1,True,234,266.0,1,194
+Bamako,4,1,False,500,-500.0,0,336
+Clause,4,1,True,7,493.0,1,3
+Buddhism,3,1,True,65,435.0,1,39
+Village,3,1,True,217,283.0,1,140
+Rock dove,4,2,False,500,-500.0,1,227
+Thomas Hardy,4,2,True,292,208.0,2,198
+Prime meridian,4,2,True,208,292.0,2,145
+Watermill,4,1,True,401,99.0,1,320
+History of political thought,4,3,True,55,445.0,3,25
+Clothing industry,4,2,True,171,329.0,2,128
+Ra,4,1,True,27,473.0,1,13
+Chinese art,4,2,True,43,457.0,2,15
+Salvia,4,1,False,500,-500.0,0,356
+Speech act,4,2,True,33,467.0,2,14
+Agricultural science,4,2,True,51,449.0,2,35
+Corruption,4,1,True,210,290.0,1,139
+Sense of smell,4,2,True,29,471.0,2,9
+Snow leopard,4,2,True,73,427.0,2,27
+Human cannibalism,4,2,True,108,392.0,2,68
+Foodborne illness,4,2,True,145,355.0,2,90
+Ordinary least squares,4,3,True,468,32.0,3,209
+Sterilization,4,1,True,18,482.0,1,5
+Centipede,4,1,True,235,265.0,1,156
+Andrew Carnegie,4,2,False,500,-500.0,1,300
+Durian,4,1,False,500,-500.0,0,348
+Cinema of the United States,4,3,True,44,456.0,3,18
+Burundi,4,1,True,32,468.0,1,14
+Babur,4,1,True,62,438.0,1,27
+Provence,4,1,True,223,277.0,1,142
+Mind–body dualism,4,3,True,109,391.0,3,40
+Mathematical analysis,3,2,True,58,442.0,2,27
+Alpha particle,4,2,True,123,377.0,2,73
+Three Kingdoms of Korea,4,3,True,147,353.0,3,69
+Pāṇini,4,1,False,500,-500.0,0,419
+Legal history,4,2,True,280,220.0,2,203
+Lyon,4,1,True,285,215.0,1,159
+Gangnam Style,4,2,True,275,225.0,2,174
+John Ford,4,2,True,180,320.0,2,51
+Battle of the Atlantic,4,2,True,57,443.0,2,29
+Cardamom,4,1,False,500,-500.0,0,406
+Standard atmosphere,4,2,True,13,487.0,2,7
+Phoenician alphabet,4,2,True,44,456.0,2,26
+Cloud chamber,4,2,True,479,21.0,2,371
+French Guiana,4,2,True,165,335.0,2,83
+Esophagus,4,1,True,29,471.0,1,11
+Ostracoderm,4,1,False,500,-500.0,0,424
+Infrastructure,3,1,True,27,473.0,1,9
+Conic section,4,2,True,69,431.0,2,39
+Manta ray,4,2,True,16,484.0,2,4
+Austronesian peoples,4,2,True,268,232.0,2,119
+Caiman,4,1,False,500,-500.0,0,435
+Aq Qoyunlu,4,2,True,18,482.0,2,4
+Video camera,4,2,True,83,417.0,2,53
+Teresa Teng,4,2,False,500,-500.0,0,277
+1970 Bhola cyclone,4,3,False,500,-500.0,2,353
+Lê dynasty,4,2,True,11,489.0,2,2
+Zombie,4,1,False,500,-500.0,0,368

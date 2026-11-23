@@ -1,3 +1,22 @@
 Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForMaskedLM: ['roberta.pooler.dense.bias', 'roberta.pooler.dense.weight']
 - This IS expected if you are initializing RobertaForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing RobertaForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+
+== lm on test (3550s) ==
+episodes:            647
+success rate:        87.2%
+  solved within  50: 34.9%
+  solved within 100: 57.2%
+  solved within 200: 73.3%
+  solved within 500: 87.2%
+mean capped cost:    156.5  (failures = 500)
+median guesses (solved): 65
+mean return:         279.3
+guesses revealing 0: 62.6%
+title words found:   89.0% on average
+  level 1: 100.0% solved (1 articles)
+  level 2: 100.0% solved (5 articles)
+  level 3: 100.0% solved (47 articles)
+  level 4: 86.0% solved (594 articles)
+reachable ceiling:   98.8% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/lm_w3_end0.5_hunt3_test.csv

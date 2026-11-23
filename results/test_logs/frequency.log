@@ -1,0 +1,19 @@
+
+== frequency on test (65s) ==
+episodes:            647
+success rate:        2.2%
+  solved within  50: 0.0%
+  solved within 100: 0.0%
+  solved within 200: 0.3%
+  solved within 500: 2.2%
+mean capped cost:    496.4  (failures = 500)
+median guesses (solved): 326
+mean return:         -485.6
+guesses revealing 0: 44.7%
+title words found:   10.6% on average
+  level 1: 0.0% solved (1 articles)
+  level 2: 40.0% solved (5 articles)
+  level 3: 2.1% solved (47 articles)
+  level 4: 1.9% solved (594 articles)
+reachable ceiling:   98.8% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/frequency_test.csv
