@@ -1,0 +1,18 @@
+
+== random on train (816s) ==
+episodes:            647
+success rate:        0.2%
+  solved within  50: 0.0%
+  solved within 100: 0.0%
+  solved within 200: 0.2%
+  solved within 500: 0.2%
+mean capped cost:    499.4  (failures = 500)
+median guesses (solved): 122
+mean return:         -498.6
+guesses revealing 0: 99.1%
+title words found:   0.2% on average
+  level 2: 33.3% solved (3 articles)
+  level 3: 0.0% solved (40 articles)
+  level 4: 0.0% solved (604 articles)
+reachable ceiling:   99.7% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/random_train.csv

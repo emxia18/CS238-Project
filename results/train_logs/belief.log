@@ -1,0 +1,18 @@
+
+== belief on train (386s) ==
+episodes:            647
+success rate:        99.7%
+  solved within  50: 98.0%
+  solved within 100: 99.1%
+  solved within 200: 99.7%
+  solved within 500: 99.7%
+mean capped cost:    13.0  (failures = 500)
+median guesses (solved): 9
+mean return:         485.5
+guesses revealing 0: 8.2%
+title words found:   99.8% on average
+  level 2: 100.0% solved (3 articles)
+  level 3: 100.0% solved (40 articles)
+  level 4: 99.7% solved (604 articles)
+reachable ceiling:   99.7% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/belief_end0.5_hunt3_train.csv

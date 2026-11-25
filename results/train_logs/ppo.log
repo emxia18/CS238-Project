@@ -1,0 +1,18 @@
+
+== ppo on train (706s) ==
+episodes:            647
+success rate:        99.7%
+  solved within  50: 92.9%
+  solved within 100: 97.7%
+  solved within 200: 99.5%
+  solved within 500: 99.7%
+mean capped cost:    17.5  (failures = 500)
+median guesses (solved): 8
+mean return:         480.9
+guesses revealing 0: 4.7%
+title words found:   99.8% on average
+  level 2: 100.0% solved (3 articles)
+  level 3: 100.0% solved (40 articles)
+  level 4: 99.7% solved (604 articles)
+reachable ceiling:   99.7% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/ppo_hunt_best_train.csv

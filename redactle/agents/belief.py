@@ -159,6 +159,7 @@ class BeliefAgent(Agent):
         if not np.isfinite(s.max()):
             return None
         self.last_hunt = self.n_acts
+        self.hunt_score = s.copy()
         return self._pick(s, obs)
 
     def _pick(self, score, obs: Observation) -> str:
@@ -175,8 +176,14 @@ class BeliefAgent(Agent):
         score, top, w = self.expected_counts()
         hunt = self.hunt_guess(obs, w)
         if hunt is not None:
+            self.record(self.hunt_score, top, w, "hunt")
             return hunt
         score = self.shape_scores(score, obs, top, w)
-        # Kept for inspection / figures: candidate scores and belief this step.
-        self.last_score, self.last_top, self.last_w = score.copy(), top, w
+        self.record(score.copy(), top, w, "score")
         return self._pick(score, obs)
+
+    def record(self, score, top, w, kind: str) -> None:
+        """Kept for inspection / figures: the candidate scores this step
+        ("score": expected matches, "hunt": title-hunt score) and belief."""
+        self.last_score, self.last_top, self.last_w = score, top, w
+        self.last_kind = kind

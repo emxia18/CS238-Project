@@ -116,6 +116,7 @@ class LMBeliefAgent(BeliefAgent):
         score, top, w = self.expected_counts()
         hunt = self.hunt_guess(obs, w)
         if hunt is not None:
+            self.record(self.hunt_score, top, w, "hunt")
             return hunt
         lm = self.lm_counts(obs)
         extra = np.full(len(self.extra_words), -np.inf)
@@ -131,7 +132,7 @@ class LMBeliefAgent(BeliefAgent):
         extra = np.where(np.isin(elen, list(title_hidden)),
                          extra * (1 + self.title_bonus), extra)
         extra[self.extra_guessed] = -np.inf
-        self.last_score, self.last_top, self.last_w = score.copy(), top, w
+        self.record(score.copy(), top, w, "score")
         j = int(np.argmax(extra)) if len(extra) else -1
         if j >= 0 and extra[j] > score.max():
             self.extra_guessed[j] = True

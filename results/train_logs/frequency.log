@@ -1,0 +1,18 @@
+
+== frequency on train (737s) ==
+episodes:            647
+success rate:        1.5%
+  solved within  50: 0.2%
+  solved within 100: 0.3%
+  solved within 200: 0.6%
+  solved within 500: 1.5%
+mean capped cost:    496.2  (failures = 500)
+median guesses (solved): 235
+mean return:         -488.5
+guesses revealing 0: 44.0%
+title words found:   8.8% on average
+  level 2: 0.0% solved (3 articles)
+  level 3: 7.5% solved (40 articles)
+  level 4: 1.2% solved (604 articles)
+reachable ceiling:   99.7% of titles have all words in the vocabulary
+per-episode results -> /Users/emxia18/Downloads/Stanford/2026-27 Senior/Fall Quarter/CS238/CS238-Project/results/frequency_train.csv
